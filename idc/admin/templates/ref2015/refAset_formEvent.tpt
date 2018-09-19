@@ -1,0 +1,94 @@
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="info_event_aset"></label>
+  <SM type="sf" data="entity" var="info_event_aset">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxkej_tanggal"></label>
+  <SM type="sf" data="entity" var="trxkej_tanggal">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxkej_waktu"></label>
+  <SM type="sf" data="entity" var="trxkej_waktu">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxkej_id_kej"></label>
+  <SM type="sf" data="entity" var="trxkej_id_kej">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxkej_keterangan"></label>
+  <SM type="sf" data="entity" var="trxkej_keterangan">
+</div>
+<input type="button" class="btn btn-default" value="Simpan" onclick="event_simpan()">&nbsp;&nbsp;<input type="button" class="btn btn-default" onclick="event_bataltutup()" value="Batal & Tutup">
+
+<script type="text/javascript">
+<!--
+
+function event_clearForm() {
+    var tmp1 = $("#trxkej_tanggal").data("kendoDatePicker");
+    tmp1.value(new Date());
+    
+    var tmp2 = $("#trxkej_waktu").data("kendoTimePicker");
+    tmp2.value(new Date());
+    
+    var tmp3 = $("#trxkej_id_kej").data("kendoComboBox");
+    tmp3.value('');
+    
+    $("#trxkej_keterangan").val('');
+}
+
+function event_bataltutup() {
+    if (window.confirm('Batal dan tutup Form Peristiwa?')) {
+        event_clearForm();
+        var tmp = $("#divform_addevent").data("kendoWindow");
+        tmp.close();
+    }
+}
+
+function event_simpan() {
+    
+    var tmp1 = $("#trxkej_tanggal").data("kendoDatePicker");
+    var tmp2 = $("#trxkej_waktu").data("kendoTimePicker");
+    var tmp3 = $("#trxkej_id_kej").data("kendoComboBox");
+    
+    $.post(
+        "<SM TYPE='area' NAME='url_ajxEventSave'>",
+        { rNum: js_id_aset_view,
+          trxkej_tanggal: $("#trxkej_tanggal").val(),
+          trxkej_waktu: $("#trxkej_waktu").val(),
+          trxkej_id_kej: tmp3.value(),
+          trxkej_keterangan: $("#trxkej_keterangan").val()
+          },
+        function (data) {
+            $("#divtab_peristiwa_timeline").html(data);
+            gridReload_peristiwa();
+            event_clearForm();
+            var tmp = $("#divform_addevent").data("kendoWindow");
+            tmp.close();
+        },
+        "html"
+    );
+    
+}
+
+function event_delete(id) {
+    if (window.confirm('Hapus data peristiwa?')) {
+        $.post(
+            "<SM TYPE='area' NAME='url_ajxEventDelete'>",
+            { rNum: js_id_aset_view,
+              rNum2: id
+              },
+            function (data) {
+                $("#divtab_peristiwa_timeline").html(data);
+                gridReload_peristiwa();
+            },
+            "html"
+        );
+    }
+}
+
+$(document).ready(function($){
+    
+});
+
+-->
+</script>

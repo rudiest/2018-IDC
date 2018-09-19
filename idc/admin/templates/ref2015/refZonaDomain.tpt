@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-12">
+  	<SM TYPE='area' NAME='sma_tabGrid'>
+  </div>
+</div>
+
+<script type="text/javascript">
+<!--
+
+function editGrid(option) {
+    window.location.href = '<SM TYPE='area' NAME='popUrl_modifyData'>&sType=edit&rNum='+option;
+}
+
+function addNewData() {
+    window.location.href = '<SM TYPE='area' NAME='popUrl_modifyData'>';
+}
+
+$(document).ready(function($){
+
+});
+
+-->
+</script>

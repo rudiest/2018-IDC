@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-12">
+  	<SM TYPE='area' NAME='sma_tabGrid'>
+  </div>
+</div>
+
+<script type="text/javascript">
+<!--
+
+function detailGrid(option) {
+    $.get('<SM TYPE='area' NAME='ajaxurl_detailGrid'>',
+          {   id_domain: option
+              },
+          function (data) {
+	          if (parseInt(data) > 0) {
+		          window.location.href = '<SM TYPE='area' NAME='url_findServer'>&rNum='+data;
+	          }
+	          else {
+		          alert(data);
+	          }
+          },
+          'html'
+    );
+}
+
+function cetakPdf() {
+    showForm(600,600,'_newFormUpload','<SM TYPE='area' NAME='popUrl_cetakPdf'>');
+}
+
+function cetakExcel() {
+    showForm(600,600,'_newFormUpload','<SM TYPE='area' NAME='popUrl_cetakExcel'>');
+}
+
+function editGrid(option) {
+    window.location.href = '<SM TYPE='area' NAME='popUrl_modifyData'>&sType=edit&rNum='+option;
+}
+
+function addNewData() {
+    window.location.href = '<SM TYPE='area' NAME='popUrl_modifyData'>';
+}
+
+$(document).ready(function($){
+
+});
+
+-->
+</script>

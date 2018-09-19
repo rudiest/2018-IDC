@@ -1,0 +1,216 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>IDC's Dashboard</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #D9534F; color: #ffffff; font-weight: bold;">Status NMS</div>
+          <div class="panel-body" style="background-color: #D9534F;">
+              <ul class="list-group">
+                  <SM TYPE='area' NAME='sma_nmsEvent'>
+              </ul>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #51AB51; color: #ffffff; font-weight: bold;">Jumlah Perangkat</div>
+          <div class="panel-body" style="background-color: #51AB51;">
+              <div id="div_jumlahPerangkat">
+              <ul class="list-group">
+                  <SM TYPE='area' NAME='sma_totalPerangkat'>
+              </ul>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #1D89CF; color: #ffffff; font-weight: bold;" >Sejarah Kejadian ( H-7 )</div>
+          <div class="panel-body" style="background-color: #1D89CF;">
+              <div id="chart_eventHistory" style="height: 295px; background-color: #ffffff;"></div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #F4B04F; color: #ffffff; font-weight: bold;">Rekap Per Bulan</div>
+          <div class="panel-body" style="background-color: #F4B04F;">
+              <div id="div_rekapPerBulan">
+              <ul class="list-group">
+                  <SM TYPE='area' NAME='sma_rekapKejadianPerBulan'>
+              </ul>
+              <a class="label label-primary">* Bulan ini / Total</a>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default" style="border-radius: 0 !important;">
+                  <div class="panel-heading" style="background-color: #000000; color: #ffffff; font-weight: bold;">Jumlah Domain</div>
+                  <div class="panel-body text-center">
+                      <h1 style="margin-top:0px;"><SM TYPE='area' NAME='sma_jmlDomain'></h1>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default" style="border-radius: 0 !important;">
+                  <div class="panel-heading" style="background-color: #000000; color: #ffffff; font-weight: bold;">Public IPv4</div>
+                  <div class="panel-body text-center">
+                      <h1 style="margin-top:0px;"><SM TYPE='area' NAME='sma_jmlIP'></h1>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default" style="border-radius: 0 !important;">
+                  <div class="panel-heading" style="background-color: #000000; color: #ffffff; font-weight: bold;">Server</div>
+                  <div class="panel-body text-center">
+                      <h1 style="margin-top:0px;"><SM TYPE='area' NAME='sma_jmlServer'></h1>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default" style="border-radius: 0 !important;">
+                  <div class="panel-heading" style="background-color: #000000; color: #ffffff; font-weight: bold;">Perangkat</div>
+                  <div class="panel-body text-center">
+                      <h1 style="margin-top:0px;"><SM TYPE='area' NAME='sma_jmlPerangkat'></h1>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default" style="border-radius: 0 !important;">
+                  <div class="panel-heading" style="background-color: #1D89CF; color: #ffffff; font-weight: bold;">Sejarah Pemakaian Sistem IDC ( H-7 )</div>
+                  <div class="panel-body" style="background-color: #1D89CF;">
+                      <div id="chart_sysActHistory" style="height: 150px; background-color: #ffffff;"></div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #51AB51; color: #ffffff; font-weight: bold;">Jenis Perangkat</div>
+          <div class="panel-body">
+              <div id="chart_pieJenisPerangkat" style="height: 295px;"></div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #000000; color: #ffffff; font-weight: bold;">Sejarah Pemakaian Sistem IDC<BR>(15 data terakhir)</div>
+          <div class="panel-body">
+            <div id="div_listSejarahSistem">
+            <ul class="list-group">
+              <SM TYPE='area' NAME='sma_logPemakaianIDC'>
+            </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #000000; color: #ffffff; font-weight: bold;">Sejarah Kunjungan<BR>(15 data terakhir)</div>
+          <div class="panel-body">
+            <div id="div_listSejarahKunjungan">
+            <ul class="list-group">
+              <SM TYPE='area' NAME='sma_logSejarahKunjungan'>
+            </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default" style="border-radius: 0 !important;">
+          <div class="panel-heading" style="background-color: #000000; color: #ffffff; font-weight: bold;">Peristiwa Perangkat<BR>(15 data terakhir)</div>
+          <div class="panel-body">
+            <div id="div_logPeristiwa">
+            <ul class="list-group">
+              <SM TYPE='area' NAME='sma_logPeristiwa'>
+            </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+<!--
+
+$(document).ready(function($){
+    
+    new Morris.Line({
+      element: 'chart_eventHistory',
+      data: [
+        <SM TYPE='area' NAME='chart_line1'>
+      ],
+      xkey: 'period',
+      ykeys: ['event','move','change','guest'],
+      labels: ['Peristiwa','Pemindahan','Perubahan Spek','Kunjungan'],
+      resize: true,
+      redraw: true,
+      parseTime: false
+    });
+    
+    new Morris.Line({
+      element: 'chart_sysActHistory',
+      data: [
+        <SM TYPE='area' NAME='chart_line2'>
+      ],
+      xkey: 'period',
+      ykeys: ['dbinsert','dbupdate','dbdelete'],
+      labels: ['Memasukkan Data','Mengubah Data','Menghapus Data'],
+      resize: true,
+      redraw: true,
+      parseTime: false
+    });
+    
+    new Morris.Donut({
+      element: 'chart_pieJenisPerangkat',
+      data: [
+        <SM TYPE='area' NAME='chart_pie1_data'>
+      ],
+      formatter: function (y) { return y + ' (' + Math.floor((y / <SM TYPE='area' NAME='chart_pie1_total'>)*100) + ' %)' }
+    });
+
+    $('#div_jumlahPerangkat').slimScroll({
+        height: '295px'
+    });
+    
+    $('#div_rekapPerBulan').slimScroll({
+        height: '295px'
+    });
+    
+    $('#div_listSejarahSistem').slimScroll({
+        height: '300px'
+    });
+    
+    $('#div_listSejarahKunjungan').slimScroll({
+        height: '300px'
+    });
+    
+    $('#div_listSejarahPeristiwa').slimScroll({
+        height: '300px'
+    });
+    
+    $('#div_logPeristiwa').slimScroll({
+        height: '300px'
+    });
+    
+});
+
+-->
+</script>
+
+

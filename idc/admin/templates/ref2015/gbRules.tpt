@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm-12"><h1 style="border-bottom: 1px solid #dedede; margin-bottom:15px;">Peraturan dan Tata Tertib Pengunjung</h1></div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+  	<div style="padding:5px;"><textarea id="editor" style="width:100%; height:440px"><SM TYPE='area' NAME='sma_content'></textarea></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+  	<div style="padding:5px;"><input type="button" value="Simpan" onclick="simpan()" class="btn btn-default"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+<!--
+
+function simpan(option) {
+    var editor = $("#editor").data("kendoEditor");
+    $.post('<SM TYPE='area' NAME='ajaxurl_simpan'>',
+          {   peraturan: editor.value()
+              },
+          function (data) {
+	          if (parseInt(data) == 1024) {
+		          window.location.href = '<SM TYPE='area' NAME='url_reloadPage'>';
+	          }
+	          else {
+		          alert(data);
+	          }
+          },
+          'html'
+    );
+}
+
+$(document).ready(function($){
+
+    $("#editor").kendoEditor({ 
+        resizable: false,
+        encoded: false,
+        tools: [
+          "bold", "italic", "underline", "strikethrough", "subscript", "superscript", "fontName", "fontSize", "foreColor", 
+          "backColor", "justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", 
+          "createTable", "addColumnLeft", "addColumnRight", "addRowAbove", "addRowBelow", "deleteRow", "deleteColumn", "formatting", "cleanFormatting", 
+          "viewHtml"
+        ]
+    });
+});
+
+-->
+</script>

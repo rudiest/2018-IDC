@@ -1,0 +1,443 @@
+<html>
+    <head>
+
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Validation - Form components - PixelAdmin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <!-- Open Sans font from Google CDN -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
+
+        <!-- Pixel Admin's stylesheets -->
+        <link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/stylesheets/pixel-admin.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/stylesheets/widgets.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.min.css" type="text/css"/>
+
+
+        <!--[if lt IE 9]>
+                <script src="assets/javascripts/ie.min.js"></script>
+        <![endif]-->
+    </head>
+    <body style="background-image: url(assets/images/background.jpg">
+
+<script>var init = [];</script>
+<!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
+
+
+
+        <div class="page-header">
+            <h1><b>Selamat Datang Di Data Center Kementrian Komunikasi dan Informatika</b></h1>
+        </div> <!-- / .page-header -->
+
+        <div class="row">
+            <div class="col-sm-7">
+                <!-- batas 1-->
+                <!-- 5. $JQUERY_VALIDATION =========================================================================
+                
+                                                jQuery Validation
+                -->
+                <!-- Javascript -->
+                <script>
+                    init.push(function() {
+                        $("#jq-validation-phone").mask("(999) 999-9999");
+                        $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function() {
+                            $(this).valid();
+                        });
+                        $('#jq-validation-select2-multi').select2({placeholder: 'Select gear...'}).change(function() {
+                            $(this).valid();
+                        });
+
+                        // Add phone validator
+                        $.validator.addMethod(
+                                "phone_format",
+                                function(value, element) {
+                                    var check = false;
+                                    return this.optional(element) || /^\(\d{3}\)[ ]\d{3}\-\d{4}$/.test(value);
+                                },
+                                "Invalid phone number."
+                                );
+
+                        // Setup validation
+                        $("#jq-validation-form").validate({
+                            ignore: '.ignore, .select2-input',
+                            focusInvalid: false,
+                            rules: {
+                                'jq-validation-email': {
+                                    required: true,
+                                    email: true
+                                },
+                                'jq-validation-password': {
+                                    required: true,
+                                    minlength: 6,
+                                    maxlength: 20
+                                },
+                                'jq-validation-password-confirmation': {
+                                    required: true,
+                                    minlength: 6,
+                                    equalTo: "#jq-validation-password"
+                                },
+                                'jq-validation-required': {
+                                    required: true
+                                },
+                                'jq-validation-url': {
+                                    required: true,
+                                    url: true
+                                },
+                                'jq-validation-phone': {
+                                    required: true,
+                                    phone_format: true
+                                },
+                                'jq-validation-select': {
+                                    required: true
+                                },
+                                'jq-validation-multiselect': {
+                                    required: true,
+                                    minlength: 2
+                                },
+                                'jq-validation-select2': {
+                                    required: true
+                                },
+                                'jq-validation-select2-multi': {
+                                    required: true,
+                                    minlength: 2
+                                },
+                                'jq-validation-text': {
+                                    required: true
+                                },
+                                'jq-validation-simple-error': {
+                                    required: true
+                                },
+                                'jq-validation-dark-error': {
+                                    required: true
+                                },
+                                'jq-validation-radios': {
+                                    required: true
+                                },
+                                'jq-validation-checkbox1': {
+                                    require_from_group: [1, 'input[name="jq-validation-checkbox1"], input[name="jq-validation-checkbox2"]']
+                                },
+                                'jq-validation-checkbox2': {
+                                    require_from_group: [1, 'input[name="jq-validation-checkbox1"], input[name="jq-validation-checkbox2"]']
+                                },
+                                'jq-validation-policy': {
+                                    required: true
+                                }
+                            },
+                            messages: {
+                                'jq-validation-policy': 'You must check it!'
+                            }
+                        });
+                    });
+                </script>
+                <!-- / Javascript -->
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <span class="panel-title">Buku Tamu</span>
+                    </div>
+                    <div class="panel-body">
+
+
+                        <form class="form-horizontal" id="jq-validation-form">
+                            <div class="form-group">
+                                <label for="jq-validation-email" class="col-sm-3 control-label">Nama</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="jq-validation-email" name="jq-validation-email" placeholder="Ex. Roy">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jq-validation-password" class="col-sm-3 control-label">Instansi/Satker</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="jq-validation-form" name="jq-validation-password" placeholder="Ex. Pusat Data dan Sarana Informatika">
+                                    <p class="help-block">Example block-level help text here.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jq-validation-password-confirmation" class="col-sm-3 control-label">Tujuan</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="jq-validation-form" name="jq-validation-password-confirmation" placeholder="Ex. Cek Server">
+                                    <p class="help-block">Example block-level help text here.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jq-validation-required" class="col-sm-3 control-label">Pendamping</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="jq-validation-required" name="jq-validation-required" placeholder="Required">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jq-validation-url" class="col-sm-3 control-label">Foto</label>
+                                <div class="col-sm-9">
+                                    <script>
+                                        init.push(function() {
+                                            $("#dropzonejs-example").dropzone({
+                                                url: "//dummy.html",
+                                                paramName: "file", // The name that will be used to transfer the file
+                                                maxFilesize: 0.5, // MB
+
+                                                addRemoveLinks: true,
+                                                dictResponseError: "Can't upload file!",
+                                                autoProcessQueue: false,
+                                                thumbnailWidth: 100,
+                                                thumbnailHeight: 80,
+                                                previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size">File size: <span data-dz-size></span></div><div class="dz-thumbnail-wrapper"><div class="dz-thumbnail"><img data-dz-thumbnail><span class="dz-nopreview">No preview</span><div class="dz-success-mark"><i class="fa fa-check-circle-o"></i></div><div class="dz-error-mark"><i class="fa fa-times-circle-o"></i></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div></div><div class="progress progress-striped active"><div class="progress-bar progress-bar-success" data-dz-uploadprogress></div></div></div>',
+                                                resize: function(file) {
+                                                    var info = {srcX: 0, srcY: 0, srcWidth: file.width, srcHeight: file.height},
+                                                    srcRatio = file.width / file.height;
+                                                    if (file.height > this.options.thumbnailHeight || file.width > this.options.thumbnailWidth) {
+                                                        info.trgHeight = this.options.thumbnailHeight;
+                                                        info.trgWidth = info.trgHeight * srcRatio;
+                                                        if (info.trgWidth > this.options.thumbnailWidth) {
+                                                            info.trgWidth = this.options.thumbnailWidth;
+                                                            info.trgHeight = info.trgWidth / srcRatio;
+                                                        }
+                                                    } else {
+                                                        info.trgHeight = file.height;
+                                                        info.trgWidth = file.width;
+                                                    }
+                                                    return info;
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                    <div id="dropzonejs-example" class="dropzone-box">
+                                        <div class="dz-default dz-message">
+                                            <i class="fa fa-camera"></i>
+                                            Drop files in here<br><span class="dz-text-small">or click to pick manually</span>
+                                        </div>
+                                        <form action="http://dummy.html/">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple="" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jq-validation-phone" class="col-sm-3 control-label">Phone</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" placeholder="Phone: (999) 999-9999">
+                                </div>
+                            </div>
+
+                           
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Ketentuan</label>
+                                <div class="col-sm-9">
+                                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <h4>Text in a modal</h4>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+                                                    <h4>Popover in a modal</h4>
+                                                    <p>This <a href="#" role="button" class="btn btn-default popover-test" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">button</a> should trigger a popover on click.</p>
+
+                                                    <h4>Tooltips in a modal</h4>
+                                                    <p><a href="#" class="tooltip-test" title="" data-original-title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
+
+                                                    <hr>
+
+                                                    <h4>Overflowing text to show scroll behavior</h4>
+                                                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                                </div> <!-- / .modal-body -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div> <!-- / .modal-content -->
+                                        </div> <!-- / .modal-dialog -->
+                                    </div>
+
+                                       <div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title">Default modal</span>
+					</div>
+					<div class="panel-body">
+						<!-- Button trigger modal -->
+						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Baca Peraturan</button>
+					</div>
+				</div>
+
+                                    </div>
+                                </div>
+
+
+                                <hr class="panel-wide">
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="jq-validation-policy" id="jq-validation-policy" class="px"> <span class="lbl">Accept and Confirm policy</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button type="submit" class="btn btn-primary">Check in</button>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /5. $JQUERY_VALIDATION -->
+            <!-- Batas 1 -->
+
+
+            <!-- Batas 2 -->
+
+            <div class="col-md-4">
+                <form action="home.php" class="panel form-horizontal">
+                    <div class="panel-heading">
+                        <span class="panel-title">Login Page</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row form-group">
+                            <label class="col-sm-4 control-label">Username:</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="page" class="form-control" value="home">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-4 control-label">Password:</label>
+                            <div class="col-sm-8">
+                                <input type="email" name="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer text-right">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div> <!-- / #content-wrapper -->
+            
+            <div class="col-md-5">
+				<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$('.widget-tasks .panel-body').pixelTasks().sortable({
+							axis: "y",
+							handle: ".task-sort-icon",
+							stop: function( event, ui ) {
+								// IE doesn't register the blur when sorting
+								// so trigger focusout handlers to remove .ui-state-focus
+								ui.item.children( ".task-sort-icon" ).triggerHandler( "focusout" );
+							}
+						});
+						$('#clear-completed-tasks').click(function () {
+							$('.widget-tasks .panel-body').pixelTasks('clearCompletedTasks');
+						});
+					});
+				</script>
+				<!-- / Javascript -->
+
+				<div class="panel widget-tasks panel-dark-gray">
+					<div class="panel-heading">
+						<span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Check Out</span>
+						<div class="panel-heading-controls">
+							<button class="btn btn-xs btn-primary btn-outline dark" id="clear-completed-tasks"><i class="fa fa-eraser text-success"></i> Clear completed tasks</button>
+						</div>
+					</div> <!-- / .panel-heading -->
+					<!-- Without vertical padding -->
+					<div class="panel-body no-padding-vr">
+
+
+						<div class="task">
+							
+							<div class="fa fa-arrows-v task-sort-icon"></div>
+							<div class="action-checkbox">
+								<label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+							</div>
+							<a href="#" class="task-title">Kusnadi</a>
+						</div> <!-- / .task -->
+
+						<div class="task">
+							
+							<div class="fa fa-arrows-v task-sort-icon"></div>
+							<div class="action-checkbox">
+								<label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+							</div>
+							<a href="#" class="task-title">Hartanto</a>
+						</div> <!-- / .task -->
+
+						<div class="task">
+							
+							<div class="fa fa-arrows-v task-sort-icon"></div>
+							<div class="action-checkbox">
+								<label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+							</div>
+							<a href="#" class="task-title">Reinaldo</a>
+						</div> <!-- / .task -->
+
+						<div class="task">
+							
+							<div class="fa fa-arrows-v task-sort-icon"></div>
+							<div class="action-checkbox">
+								<label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+							</div>
+							<a href="#" class="task-title">Erin</a>
+						</div> <!-- / .task -->
+
+						<div class="task">
+							<div class="fa fa-arrows-v task-sort-icon"></div>
+							<div class="action-checkbox">
+								<label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+							</div>
+							<a href="#" class="task-title">Example</a>
+						</div> <!-- / .task -->
+
+						<div class="task">
+							
+							<div class="fa fa-arrows-v task-sort-icon"></div>
+							<div class="action-checkbox">
+								<label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+							</div>
+							<a href="#" class="task-title">Example</a>
+						</div> <!-- / .task -->
+					</div> <!-- / .panel-body -->
+				</div> <!-- / .panel -->
+			</div>
+        </div>
+
+        <script type="text/javascript"> window.jQuery || document.write('<script src="../ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">' + "<" + "/script>");</script>
+        <!-- <![endif]-->
+        <!--[if lte IE 9]>
+                <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+        <![endif]-->
+
+
+        <!-- Pixel Admin's javascripts -->
+        <script src="assets/javascripts/bootstrap.min.js"></script>
+        <script src="assets/javascripts/pixel-admin.min.js"></script>
+
+        <script type="text/javascript">
+                            init.push(function() {
+                                // Javascript code here
+                            })
+                            window.PixelAdmin.start(init);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-6" style="text-align: left">
+  	<h2><b>Form Pengguna Sistem</b></h2>
+  </div>
+  <div class="col-sm-6" style="text-align: right">
+  	<input type="button" value="Batal, kembali ke tabel" onclick="batal()" class="btn btn-default"> &nbsp;&nbsp;
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+  	<div class="well well-lg">
+  	  <SM TYPE='area' NAME='sma_formcontent'>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+<!--
+
+function batal() {
+    window.location.href = '<SM TYPE='area' NAME='url_batal'>';
+}
+
+$(document).ready(function($){
+
+});
+
+-->
+</script>

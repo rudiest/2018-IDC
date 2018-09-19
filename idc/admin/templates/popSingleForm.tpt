@@ -1,0 +1,12 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td align="left" valign="top" class="popTittle"><span><font size="5"><B><SM TYPE="area" NAME="popTittle"><B></font></span></td>
+    <td align="center" valign="middle" bgcolor="#F0713A"><div id="mainUser_pageStatus" class="frameAppStatus">READY</div></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="4" align="left" valign="top" bgcolor="#F0713A"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top" cellpadding="5" style="border-bottom:2px solid #F0713A;"><SM TYPE='area' NAME='popContent'></td>
+  </tr>
+</table>

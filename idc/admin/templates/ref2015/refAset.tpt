@@ -1,0 +1,451 @@
+<div id="div_grid" style="display: none;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="4">
+    <tr>
+     <td align="left" valign="top" style="padding-bottom:15px;">
+      <input type="button" value="Daftar Aset" onclick="openDaftarAset()" class="btn btn-default"> &nbsp;&nbsp;
+      <input type="button" value="Lihat Per Lokasi" onclick="openPerLokasi()" class="btn btn-default"> &nbsp;&nbsp;
+      <input type="button" value="Lihat Per Satuan Kerja" onclick="openPerSatker()" class="btn btn-default"> &nbsp;&nbsp;
+      <input type="button" value="Lihat Per Penanggung Jawab" onclick="openPerPenanggung()" class="btn btn-default"> &nbsp;&nbsp;
+     </td>
+    </tr>
+    <tr>
+    <td align="left" valign="top">
+     <div id="divtab2_aset" style="display: none;">
+       <SM TYPE='area' NAME='sma_tabGrid'>
+       <input type="button" value="Cetak Daftar Aset" onclick="cetakPdf()" class="btn btn-default"> &nbsp;&nbsp;
+       <input type="button" value="Download Daftar Aset" onclick="cetakExcel()" class="btn btn-default"> &nbsp;&nbsp;    
+     </div>
+     <div id="divtab2_perlokasi" style="display: none;"><SM TYPE='area' NAME='sma_tabGrid_perlokasi'></div>
+     <div id="divtab2_persatker" style="display: none;"><SM TYPE='area' NAME='sma_tabGrid_satker'></div>
+     <div id="divtab2_perpenanggung" style="display: none;"><SM TYPE='area' NAME='sma_tabGrid_penanggungjawab'></div>
+    </td>
+    </tr>
+    <tr>
+     <td align="left" valign="top">
+    <SM TYPE='area' NAME='sma_button'>
+     </td>
+    </tr>
+    </table>
+</div>
+
+
+<div id="div_form" style="display: none;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="4">
+    <tr>
+     <td align="left" valign="middle" style="padding-bottom:15px;">
+      <h3><B>Form Tambah/Ubah Aset</B></h3>
+     </td>
+     <td align="right" valign="middle" style="padding-bottom:15px;" width="300">
+      <input type="button" class="btn btn-default" value="Kembali Ke Tabel" onclick="show_page('grid')">
+     </td>
+    </tr>
+    <tr>
+    <td align="left" valign="top" colspan="2">
+      <SM TYPE='area' NAME='sma_formAset'>
+    </td>
+    </tr>
+    </table>
+</div>
+
+
+<div id="div_view" style="display: none;">
+    <div class="row">
+      <div class="col-sm-2">
+      	<div id="divview_badge"></div>
+      </div>
+      <div class="col-sm-10">
+          <table width="100%" border="0" cellspacing="0" cellpadding="4">
+            <tr>
+             <td align="left" valign="middle" style="padding-bottom:15px;">
+              <div id="divw_namaaset"></div>
+             </td>
+             <td align="right" valign="middle" style="padding-bottom:15px;" width="300" nowrap>
+              <input type="button" class="btn btn-default" value="Kembali Ke Tabel" onclick="show_page('grid')">&nbsp;&nbsp;
+              <input type="button" class="btn btn-default" value="Ubah" onclick="editGrid(js_id_aset_view)">
+              <input type="button" class="btn btn-default" value="Cetak" onclick="cetakSpekAset(js_id_aset_view)">
+             </td>
+            </tr>
+          </table>
+          <div id="tabstrip">
+            <ul >
+                <li class="k-state-active">Spesifikasi</li>
+                <li >Lokasi</li>
+                <li >Peristiwa</li>
+                <li >Perubahan</li>
+                <li >Foto</li>
+                <li >Dokumen</li>
+                <li >Panduan</li>
+            </ul>
+            <div id="divtab_spesifikasi" style="padding:20px;">
+                <div id="divtab_spesifikasi_content"></div>
+            </div>
+            <div id="divtab_lokasi">
+              <div id="divtab_lokasi_timeline" style="padding:20px;"></div>  
+              <div id="divtab_lokasi_table" style="padding:20px; display: none;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td align="right" valign="top"><button class="btn btn-default" onclick="show_divtab_lokasi_timeline()">Lihat Timeline</button> <button class="btn btn-default" onclick="openform_newloc()">+ Data</button></td>
+                  </tr>    
+                  <tr>
+                    <td align="left" valign="top">&nbsp;</td>
+                  </tr>    
+                  <tr>
+                    <td align="left" valign="top"><SM TYPE='area' NAME='sma_tabGrid_lokasi'></td>
+                  </tr>    
+                </table>
+              </div>
+            </div>
+            <div id="divtab_peristiwa" style="padding:5px;">
+              <div id="divtab_peristiwa_timeline" style="padding:20px;"></div>  
+              <div id="divtab_peristiwa_table" style="padding:20px; display: none;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td align="right" valign="top"><button class="btn btn-default" onclick="show_divtab_peristiwa_timeline()">Lihat Timeline</button> <button class="btn btn-default" onclick="openform_newevent()">+ Data</button></td>
+                  </tr>    
+                  <tr>
+                    <td align="left" valign="top">&nbsp;</td>
+                  </tr>    
+                  <tr>
+                    <td align="left" valign="top"><SM TYPE='area' NAME='sma_tabGrid_peristiwa'></td>
+                  </tr>    
+                </table>  
+              </div>
+            </div>
+            <div id="divtab_perubahan">
+              <div id="divtab_perubahan_timeline" style="padding:20px;"></div>  
+              <div id="divtab_perubahan_table" style="padding:20px; display: none;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td align="right" valign="top"><button class="btn btn-default" onclick="show_divtab_perubahan_timeline()">Lihat Timeline</button></td>
+                  </tr>    
+                  <tr>
+                    <td align="left" valign="top">&nbsp;</td>
+                  </tr>    
+                  <tr>
+                    <td align="left" valign="top"><SM TYPE='area' NAME='sma_tabGrid_perubahan'></td>
+                  </tr>    
+                </table>
+              </div>  
+            </div>
+            <div id="divtab_foto" style="padding:20px;">
+                <div id="divtab_foto_content"></div>
+            </div>
+            <div id="divtab_dokumen" style="padding:20px;">
+                <div id="divtab_dokumen_content"></div>
+            </div>
+            <div id="divtab_panduan" style="padding:20px;">
+                <div id="divtab_panduan_content"></div>
+            </div>
+          </div>    
+      </div>
+    </div>
+</div>
+
+<div id="divform_addloc" style="display: none;">
+  <SM TYPE='area' NAME='sma_form_addloc'>
+</div>
+
+<div id="divform_addevent" style="display: none;">
+  <SM TYPE='area' NAME='sma_form_addevent'>
+</div>
+
+<script type="text/javascript">
+<!--
+
+var js_id_aset_view = 0;
+
+/* BEGIN Show function */
+function show_divtab_peristiwa_table() {
+    $("#divtab_peristiwa_timeline").hide();
+    $("#divtab_peristiwa_table").show();
+}
+
+function show_divtab_peristiwa_timeline() {
+    $("#divtab_peristiwa_table").hide();
+    $("#divtab_peristiwa_timeline").show();
+}
+
+function show_divtab_lokasi_table() {
+    $("#divtab_lokasi_timeline").hide();
+    $("#divtab_lokasi_table").show();
+}
+
+function show_divtab_lokasi_timeline() {
+    $("#divtab_lokasi_table").hide();
+    $("#divtab_lokasi_timeline").show();
+}
+
+function show_divtab_perubahan_table() {
+    $("#divtab_perubahan_timeline").hide();
+    $("#divtab_perubahan_table").show();
+}
+
+function show_divtab_perubahan_timeline() {
+    $("#divtab_perubahan_table").hide();
+    $("#divtab_perubahan_timeline").show();
+}
+
+function show_page(option) {
+    if (option == 'form') {
+        $('#div_grid').hide();
+        $('#div_view').hide();
+        $('#div_form').show();
+        js_formPrepare('new',0);
+    }
+    if (option == 'view') {
+        $('#div_grid').hide();
+        $('#div_form').hide();
+        $('#div_view').show();
+    }
+    if (option == 'grid') {
+        $('#div_form').hide();
+        $('#div_view').hide();
+        $('#div_grid').show();
+    }
+}
+
+function show_divView(option) {
+    if (option > 0) {
+        js_id_aset_view = option;
+        prepare_divView();
+    }
+    else {
+        alert('Error! expected value missmatch')
+    }
+}
+
+function detailGrid(option) {
+    $('#div_grid').hide();
+    $('#div_form').hide();
+    $('#div_view').hide();
+    show_divView(option);
+}
+
+function editGrid(option) {
+    js_formPrepare('edit',option);
+    $('#div_grid').hide();
+    $('#div_view').hide();
+    $('#div_form').hide();
+    $('#div_form').show();
+}
+
+function addNewData() {
+    $('#div_grid').hide();
+    $('#div_view').hide();
+    $('#div_form').show();
+    js_formPrepare('new',0);
+}
+
+function openDaftarAset() {
+    $("#divtab2_aset").hide();
+    $("#divtab2_perlokasi").hide();
+    $("#divtab2_perpenanggung").hide();
+    $("#divtab2_persatker").hide();
+    $("#divtab2_aset").show();
+}
+
+function openPerLokasi() {
+    var tabStrip = $("#tabstrip2").kendoTabStrip().data("kendoTabStrip");
+    tabStrip.destroy();
+    $("#divtab2_perlokasi").html('');
+    $("#divtab2_aset").hide();
+    $("#divtab2_perlokasi").hide();
+    $("#divtab2_persatker").hide();
+    $("#divtab2_perpenanggung").hide();
+    $.get("<SM TYPE='area' NAME='urlajx_buildGridPerLokasi'>",
+          { 
+            },
+          function (data) {
+            $("#divtab2_perlokasi").html(data);
+            $("#tabstrip2").kendoTabStrip({
+                animation:  {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                }
+            });
+            $("#divtab2_perlokasi").show();
+          },
+          "html"
+    );
+}
+
+function openPerSatker() {
+    var tabStrip = $("#tabstrip4").kendoTabStrip().data("kendoTabStrip");
+    tabStrip.destroy();
+    $("#divtab2_persatker").html('');
+    $("#divtab2_aset").hide();
+    $("#divtab2_perlokasi").hide();
+    $("#divtab2_persatker").hide();
+    $("#divtab2_perpenanggung").hide();
+    $.get("<SM TYPE='area' NAME='urlajx_buildGridPerSatker'>",
+          { 
+            },
+          function (data) {
+            $("#divtab2_persatker").html(data);
+            $("#tabstrip4").kendoTabStrip({
+                animation:  {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                }
+            });
+            $("#divtab2_persatker").show();
+          },
+          "html"
+    );
+}
+
+function openPerPenanggung() {
+    var tabStrip = $("#tabstrip3").kendoTabStrip().data("kendoTabStrip");
+    tabStrip.destroy();
+    $("#divtab2_perpenanggung").html('');
+    $("#divtab2_aset").hide();
+    $("#divtab2_perlokasi").hide();
+    $("#divtab2_persatker").hide();
+    $("#divtab2_perpenanggung").hide();
+    $.get("<SM TYPE='area' NAME='urlajx_buildGridPerPenanggung'>",
+          { 
+            },
+          function (data) {
+            $("#divtab2_perpenanggung").html(data);
+            $("#tabstrip3").kendoTabStrip({
+                animation:  {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                }
+            });
+            $("#divtab2_perpenanggung").show();
+          },
+          "html"
+    );
+}
+
+/* END Show function */
+
+
+function prepare_divView() {
+    $.get("<SM TYPE='area' NAME='url_getDivView_aset'>",
+          { rNum: js_id_aset_view
+            },
+          function (data) {
+            if (!(typeof data.error === "undefined")) { alert(data.error); }
+            else {
+                $("#divview_badge").html(data.divview_badge);
+                $("#divw_namaaset").html(data.divw_namaaset);
+                $("#divtab_spesifikasi_content").html(data.divtab_spesifikasi);
+                $("#divtab_lokasi_timeline").html(data.divtab_lokasi_timeline);
+                $("#divtab_peristiwa_timeline").html(data.divtab_peristiwa_timeline);
+                $("#divtab_perubahan_timeline").html(data.divtab_perubahan_timeline);
+                $("#divtab_foto_content").html(data.divtab_foto);
+                $("#divtab_dokumen_content").html(data.divtab_dokumen);
+                $("#divtab_panduan_content").html(data.divtab_panduan);
+                
+                $("#info_event_aset").html(data.divw_namaaset);
+                $("#info_lokasi_aset").html(data.divw_namaaset);
+                
+                // grid reload
+                gridReload_peristiwa();
+                gridReload_lokasi();
+                gridReload_perubahan();
+                
+                // show div
+                show_page('view');
+            }
+          },
+          "json"
+    );
+}
+
+function cetakPdf() {
+    var tmp = $("#elh_maintblaset_searchbox").val();
+    showForm(600,600,'_newFormUpload','<SM TYPE='area' NAME='popUrl_cetakPdf'>&rNum4='+tmp);
+}
+
+function cetakExcel() {
+    var tmp = $("#elh_maintblaset_searchbox").val();
+    showForm(600,600,'_newFormUpload','<SM TYPE='area' NAME='popUrl_cetakExcel'>&rNum4='+tmp);
+}
+
+function cetakSpekAset(id) {
+    showForm(600,600,'_newFormUpload','<SM TYPE='area' NAME='popUrl_cetakSpekAset'>&rNum='+id);
+}
+
+function openform_newloc() {
+    lokasi_clearForm();
+    var win = $("#divform_addloc").data("kendoWindow");
+    win.center();
+    win.open();
+}
+
+function openform_newevent() {
+    event_clearForm();
+    var win = $("#divform_addevent").data("kendoWindow");
+    win.center();
+    win.open();
+}
+
+
+$(document).ready(function($){
+    
+    $("#div_grid").show();
+    $("#divtab2_aset").show();
+    
+    $("#tabstrip").kendoTabStrip({
+        animation:  {
+            open: {
+                effects: "fadeIn"
+            }
+        }
+    });
+    
+    $("#tabstrip2").kendoTabStrip({
+        animation:  {
+            open: {
+                effects: "fadeIn"
+            }
+        }
+    });
+    
+    $("#tabstrip3").kendoTabStrip({
+        animation:  {
+            open: {
+                effects: "fadeIn"
+            }
+        }
+    });
+    
+    $("#divform_addloc").kendoWindow({
+        title: "Form Perpindahan Lokasi",
+        actions: [
+            "Close"
+        ],
+        modal: true,
+        pinned: true,
+        resizable: false,
+        scrollable: true,
+        visible: false,
+        width: 400,
+        height: 500
+    });
+    
+    $("#divform_addevent").kendoWindow({
+        title: "Form Peristiwa",
+        actions: [
+            "Close"
+        ],
+        modal: true,
+        pinned: true,
+        resizable: false,
+        scrollable: true,
+        visible: false,
+        width: 400,
+        height: 500
+    });
+    
+    <SM TYPE='area' NAME='sma_extraJsViewServer'>
+});
+
+-->
+</script>

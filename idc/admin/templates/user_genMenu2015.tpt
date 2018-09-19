@@ -1,0 +1,35 @@
+<li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=appDashboard"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Beranda</a></li>
+<li class="<SM TYPE='area' NAME='sma_groupMenu1'>"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Database
+    <ul>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=r2_refAset"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Aset</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refDomain"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Domain</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refIP"><span class="glyphicon glyphicon-sound-5-1" aria-hidden="true"></span> IP Address</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refReport"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Report IDC</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=viewForm"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Formulir Aset</a></li>
+    </ul>
+</li>
+<li class="<SM TYPE='area' NAME='sma_groupMenu2'>"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Log
+    <ul>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=logLokasi"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Perpindahan Lokasi</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=logPeristiwa"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Laporan Kejadian</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=logPerubahan"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Perubahan Spesifikasi</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=logLogin"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Aktifitas Saya</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=logSystem"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pemakaian Sistem</a></li>
+    </ul>
+</li>
+<li class="<SM TYPE='area' NAME='sma_groupMenu3'>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Akun Saya
+    <ul>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=profilSaya"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profil Saya</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=gantiPass"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Ganti Password</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=logMyLogin"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Log Pemakaian Sistem</a></li>
+    </ul>
+</li>
+<li class="<SM TYPE='area' NAME='sma_groupMenu4'>"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Buku Tamu
+    <ul>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=bukuTamuIDC"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Daftar Tamu</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=bukuTamuPeraturan"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Tata Tertib</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=bukuTamuPendamping"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pendamping</a></li>
+    </ul>
+</li>
+<SM TYPE='area' NAME='sma_adminMenu'>
+<li style="background-color: #F09191;"><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>

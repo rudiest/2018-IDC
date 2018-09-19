@@ -1,0 +1,44 @@
+<?
+class publicWebpage extends SM_codePlate {
+
+    function codePlateConfig() {
+        // configure codePlate
+        $member = $this->sessionH->getMemberData();
+
+        $this->addInVar('popup','no');
+        $this->addInVar('option','');
+        $this->addInVar('popMode','');
+        $this->addInVar('sType','');
+        $this->addInVar('rNum1',0);
+        $this->addInVar('rNum2',0);
+        $this->addInVar('rNum3','');
+        $this->addInVar('rNum4','');
+    }
+
+    function codePlateThink() {
+	    
+        $member = $this->sessionH->getMemberData();
+        
+        $option = $this->getVar('option');
+
+        if ( $this->getVar('popup') == 'yes' ) {
+
+            $this->setMyTemplate('mainPopup');
+        }
+        else {
+	        
+	        switch ($_GET['opt']) {
+		        case 'art' : $this->setMyTemplate('publicArticle'); 
+		        			 break;
+		        default    : $this->setMyTemplate('publicWebMain'); 
+		        			 break;
+	        }
+        }
+        
+        if ( $this->getVar('popup') == 'yes' ) {
+
+        }
+    }
+
+} 
+?>

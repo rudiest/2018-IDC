@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-12"><h1 style="border-bottom: 1px solid #dedede; margin-bottom:15px;">Profil Pengguna</h1></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">DB.ID</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><SM TYPE='area' NAME='sma_user_dbid'></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Nama Lengkap</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><SM TYPE='area' NAME='sma_user_nama'></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Username</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><SM TYPE='area' NAME='sma_user_username'></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Level Pengguna</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><SM TYPE='area' NAME='sma_user_level'></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div style="padding:15px; padding-left:8px;">
+      <input type="button" value="Ganti Password" onclick="gantiPass()" class="btn btn-default">&nbsp;&nbsp;
+      <input type="button" value="Log Aktifitas Saya" onclick="logLogin()" class="btn btn-default">&nbsp;&nbsp;
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+<!--
+
+function gantiPass() {
+    window.location.href = '<SM TYPE='area' NAME='url_gantiPassword'>';
+}
+
+function logLogin() {
+    window.location.href = '<SM TYPE='area' NAME='url_logLogin'>';
+}
+
+$(document).ready(function($){
+
+});
+
+-->
+</script>

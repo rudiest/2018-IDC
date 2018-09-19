@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-sm-12"><h1 style="border-bottom: 1px solid #dedede; margin-bottom:15px;">Ganti Password</h1></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">DB.ID</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><SM TYPE='area' NAME='sma_user_dbid'></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Nama Lengkap</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><SM TYPE='area' NAME='sma_user_nama'></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Username</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><SM TYPE='area' NAME='sma_user_username'></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Password Lama</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><input type="password" value="" id="oldPass" class="k-textbox"/></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Password Baru</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><input type="password" value="" id="newPass1" class="k-textbox"/></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-2"><div style="padding:8px;">Ulangi Password Baru</div></div>
+  <div class="col-sm-10"><div style="padding:8px;"><input type="password" value="" id="newPass2" class="k-textbox"/></div></div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div style="padding:15px; padding-left:8px;">
+      <input type="button" value="Ganti Password" onclick="gantiPass()" class="btn btn-default">&nbsp;&nbsp;
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+<!--
+
+function gantiPass() {
+    
+    if ($("#oldPass").val().trim().length > 0) {
+        if ($("#newPass1").val().trim().length > 0) {
+            if ($("#newPass1").val() == $("#newPass2").val()) {
+                $.post(
+                    "<SM TYPE='area' NAME='url_ajxChPass'>",
+                    { oldPass: $("#oldPass").val(),
+                      newPass1: $("#newPass1").val(),
+                      newPass2: $("#newPass2").val()
+                      },
+                    function (data) {
+                        if (!(typeof data.error === "undefined")) { alert(data.error); }
+                        else {
+                            alert('Password telah diubah. Silahkan login kembali');
+                            window.location.href = '<SM TYPE='area' NAME='url_logout'>';
+                        }
+                    },
+                    "json"
+                );
+            }
+            else {
+                alert('Password Baru harus sama dengan Ulangi Password Baru');
+            }
+        }
+        else {
+            alert('Password Baru harus diisi');
+        }
+    }
+    else {
+        alert('Password Lama harus diisi');
+    }
+    
+    
+}
+
+$(document).ready(function($){
+
+});
+
+-->
+</script>

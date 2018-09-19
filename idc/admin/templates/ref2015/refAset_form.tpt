@@ -1,0 +1,500 @@
+<div class="row">
+<div class="col-sm-7">
+    <div id="div_formNew" style="display: none;">
+    <ul class="list-group">
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="new_label"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="new_label"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="new_ast_id_grupaset"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="new_ast_id_grupaset"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4">&nbsp;</div>
+        <div class="col-sm-8"><input type="button" class="k-button" value="Simpan" onclick="saveNewLabel()"></div>
+    </div>
+    </li>
+    </ul>
+    </div>
+
+    <div id="div_formEdit" style="display: none;">
+    <ul class="list-group">
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ast_label"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ast_label"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ast_kode_bmn"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ast_kode_bmn"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ast_id_grupaset"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ast_id_grupaset"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ast_id_lokasiaset"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ast_id_lokasiaset"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ref_aset_foto"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ref_aset_foto"><div id="div_listOfFoto"></div></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ref_aset_dokumen"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ref_aset_dokumen"><div id="div_listOfDokumen"></div></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ref_aset_usermanual"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ref_aset_usermanual"><div id="div_listOfManual"></div></div>
+    </div>
+    </li>
+
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4">IP Address</div>
+        <div class="col-sm-6"><input id="ref_ip" style="width: 100%;"/></div>
+        <div class="col-sm-2"><input type="button" class="k-button" value="Pilih IP" onclick="saveIP()"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">&nbsp;</div>
+        <div class="col-sm-8"><div id="div_listOfIP"></div></div>
+    </div>
+    </li>
+    
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ast_id_pngjawab"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ast_id_pngjawab"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="ref_stat_visible"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="ref_stat_visible"></div>
+    </div>
+    </li>
+    <li class="list-group-item">
+    <div class="row">
+        <div class="col-sm-4"><SM type="sf" data="title" var="form_aksi"></div>
+        <div class="col-sm-8"><SM type="sf" data="entity" var="form_aksi"></div>
+    </div>
+    </li>
+    </ul>
+    </div>
+</div>
+<div class="col-sm-5">
+    <div id="div_listOfSpec" style="display: none;"></div>
+</div>
+</div>
+
+<div id="win_viewPhoto" style="display: none;"></div>
+
+<script type="text/javascript">
+<!--
+
+var js_id_aset = 0;
+var js_form_state = 'new';
+
+function js_formPrepare(stype, id) {
+    
+    $("#div_formNew").hide();
+    $("#div_formEdit").hide();
+    $("#div_listOfSpec").hide();
+    
+    js_formClear();
+    
+    if ((stype == 'edit') && ((id > 0) || (id < 0))) {
+        
+        js_form_state = 'edit';
+        js_id_aset = id;
+        js_formReload(id);
+    }
+    else {
+        js_form_state = 'new';
+        js_id_aset = 0;
+        $("#div_formNew").show();
+    }
+    
+}
+
+function js_formReload(id) {
+    
+    if (!(id.length === 0 )) {
+        
+        $.post(
+            "<SM TYPE='area' NAME='url_ajxGetFormData'>",
+            { rNum: id
+              },
+            function (data) {
+                if (!(typeof data.error === "undefined")) { alert(data.error); }
+                else {
+                    
+                    $("#ast_label").val(data.ast_label);
+                    $("#ast_kode_bmn").val(data.ast_kode_bmn);
+                    
+                    var tmp;
+                    tmp = $("#ast_id_grupaset").data("kendoComboBox"); tmp.value(data.ast_id_grupaset);
+                    tmp = $("#ast_id_pngjawab").data("kendoComboBox"); tmp.value(data.ast_id_pngjawab);
+                    tmp = $("#ast_id_lokasiaset").data("kendoComboBox"); tmp.value(data.ast_id_lokasiaset);
+                    tmp = $("#ref_stat_visible").data("kendoComboBox"); tmp.value(data.ref_stat_visible);
+                    tmp = $("#form_aksi").data("kendoComboBox"); tmp.value('1');
+                    
+                    $("#div_listOfFoto").html(data.div_listOfFoto);
+                    $("#div_listOfDokumen").html(data.div_listOfDokumen);
+                    $("#div_listOfManual").html(data.div_listOfManual);
+                    $("#div_listOfSpec").html(data.div_listOfSpec);
+                    $("#div_listOfIP").html(data.div_listOfIP);
+                    
+                    $("#div_formEdit").show();
+                    $("#div_listOfSpec").show();
+                    
+                }
+            },
+            "json"
+        );
+        
+    }
+    else {
+        alert('Error! excpected value missmatch '+id);
+    }
+    
+}
+
+function js_formClear() {
+    
+    js_form_state = 'new';
+    js_id_aset = 0;
+    
+    $("#new_label").val('');
+    $("#ast_label").val('');
+    $("#ast_kode_bmn").val('');
+    
+    var tmp;
+    tmp = $("#new_ast_id_grupaset").data("kendoComboBox"); tmp.value('');
+    tmp = $("#ast_id_grupaset").data("kendoComboBox"); tmp.value('');
+    tmp = $("#ast_id_lokasiaset").data("kendoComboBox"); tmp.value('');
+    tmp = $("#ast_id_pngjawab").data("kendoComboBox"); tmp.value('');
+    tmp = $("#ref_stat_visible").data("kendoComboBox"); tmp.value('1');
+    tmp = $("#form_aksi").data("kendoComboBox"); tmp.value('1');
+    
+    $("#div_listOfFoto").html('');
+    $("#div_listOfDokumen").html('');
+    $("#div_listOfManual").html('');
+    $("#div_listOfIP").html('');
+    
+}
+
+
+function onComplete_astFoto() {
+    $.get(
+        "<SM TYPE='area' NAME='url_getAssetFoto'>",
+        { rNum: js_id_aset
+          },
+        function (data) {
+            $("#div_listOfFoto").html(data);
+        },
+        "html"
+    );
+}
+
+function onComplete_astDoc() {
+    $.get(
+        "<SM TYPE='area' NAME='url_getAssetDocument'>",
+        { rNum: js_id_aset
+          },
+        function (data) {
+            $("#div_listOfDokumen").html(data);
+        },
+        "html"
+    );
+}
+
+function onComplete_astManual() {
+    $.get(
+        "<SM TYPE='area' NAME='url_getAssetManual'>",
+        { rNum: js_id_aset
+          },
+        function (data) {
+            $("#div_listOfManual").html(data);
+        },
+        "html"
+    );
+}
+
+function onComplete_astIP() {
+    $.get(
+        "<SM TYPE='area' NAME='url_getAssetIP'>",
+        { rNum: js_id_aset
+          },
+        function (data) {
+            $("#div_listOfIP").html(data);
+        },
+        "html"
+    );
+}
+
+function onUploadError(e) {
+    alert('Error! '+e.XMLHttpRequest.responseText);
+}
+
+function saveNewLabel() {
+    if (!( $("#new_label").val().trim().length === 0 )) {
+        
+        var tmp;
+        tmp = $("#new_ast_id_grupaset").data("kendoComboBox");
+        
+        if (tmp.value() > 0 ) {
+            $.post(
+                "<SM TYPE='area' NAME='url_ajxSaveNewLabel'>",
+                { new_label: $("#new_label").val().trim(),
+                  new_jenis: tmp.value()
+                  },
+                function (data) {
+                    if (!(typeof data.error === "undefined")) { alert(data.error); }
+                    else {
+                        if (parseInt(data.id) > 0) {
+                            gridReload();
+                            js_formPrepare('edit',data.id);
+                        }
+                        else {
+                            alert('Error! expected return value missmatch '+data.id);
+                        }
+                    }
+                },
+                "json"
+            );
+        }
+        else {
+            alert('Error! Jenis aset harus diisi.');
+        }
+    }
+    else {
+        alert('Error! Nama label harus diisi.');
+    }
+}
+
+function saveOldAsset(aftertype) {
+    
+    var arr_spek = {};
+    $(".ref_aset_spesifikasi").each( function(i,obj) {
+        arr_spek[$(obj).attr('astgrpspek_id')] = $(obj).val();
+    });
+    
+    if (!( $("#ast_label").val().trim().length === 0 )) {
+        
+        var ast_label = $("#ast_label").val();
+        var ast_kode_bmn = $("#ast_kode_bmn").val();
+        
+        var ast_id_grupaset = '';
+        var ast_id_pngjawab = '';
+        var ast_id_lokasiaset = '';
+        var ref_stat_visible = '';
+        var form_aksi = '';
+        
+        var tmp;
+        tmp = $("#ast_id_grupaset").data("kendoComboBox"); ast_id_grupaset = tmp.value();
+        tmp = $("#ast_id_lokasiaset").data("kendoComboBox"); ast_id_lokasiaset = tmp.value();
+        tmp = $("#ast_id_pngjawab").data("kendoComboBox"); ast_id_pngjawab = tmp.value();
+        tmp = $("#ref_stat_visible").data("kendoComboBox"); ref_stat_visible = tmp.value();
+        tmp = $("#form_aksi").data("kendoComboBox"); form_aksi =  tmp.value();
+        
+        $.post(
+            "<SM TYPE='area' NAME='url_ajxSaveOldLabel'>",
+            { rNum: js_id_aset,
+              aftertype: aftertype,
+              sType: js_form_state,
+              ast_label: ast_label,
+              ast_kode_bmn: ast_kode_bmn,
+              ast_id_grupaset: ast_id_grupaset,
+              ast_id_lokasiaset: ast_id_lokasiaset,
+              ast_id_pngjawab: ast_id_pngjawab,
+              ref_stat_visible: ref_stat_visible,
+              form_aksi: form_aksi,
+              arr_spek: arr_spek
+              },
+            function (data) {
+                if ((parseInt(data) == 1023) || (parseInt(data) == 1024)) {
+                    // edit
+                    if (parseInt(data) == 1023) {
+                        gridReload();
+                        js_formPrepare('new', 0);
+                        alert('Data aset telah tersimpan');
+                    }
+                    else {
+                        gridReload();
+                        js_formPrepare(js_form_state, js_id_aset);
+                        alert('Data aset telah tersimpan');
+                    }
+                }
+                else {
+                    if (parseInt(data) == 1025) {
+                        // delete
+                        gridReload();
+                        js_formPrepare('new', 0);
+                        alert('Data aset telah dihapus');
+                    }
+                    else {
+                        alert(data);
+                    }
+                }
+            },
+            "html"
+        );
+        
+    }
+    else {
+        alert('Error! Nama label harus diisi.');
+    }
+}
+
+function view_foto(foto_url) {
+    var w = (window.innerWidth - Math.floor(window.innerWidth*0.2));
+    var h = (window.innerHeight - Math.floor(window.innerHeight*0.22));
+    
+    var win_viewPhoto = $("#win_viewPhoto").data("kendoWindow");
+    win_viewPhoto.setOptions({width: w, height: h});
+    win_viewPhoto.content("<center><img src='"+foto_url+"'></center>");
+    win_viewPhoto.center();
+    win_viewPhoto.open();
+}
+
+function remove_foto(id) {
+    if (window.confirm('Hapus foto?')) {
+        $.get(
+            "<SM TYPE='area' NAME='url_removeAssetFoto'>",
+            { rNum: id,
+              rNum2: js_id_aset
+              },
+            function (data) {
+                onComplete_astFoto();
+            },
+            "html"
+        );
+    }
+}
+
+function remove_doc(id) {
+    if (window.confirm('Hapus Dokumen?')) {
+        $.get(
+            "<SM TYPE='area' NAME='url_removeAssetDoc'>",
+            { rNum: id,
+              rNum2: js_id_aset
+              },
+            function (data) {
+                onComplete_astDoc();
+            },
+            "html"
+        );
+    }
+}
+
+function remove_manual(id) {
+    if (window.confirm('Hapus User Manual?')) {
+        $.get(
+            "<SM TYPE='area' NAME='url_removeAssetManual'>",
+            { rNum: id,
+              rNum2: js_id_aset
+              },
+            function (data) {
+                onComplete_astManual();
+            },
+            "html"
+        );
+    }
+}
+
+function saveIP() {
+    var tmp = $("#ref_ip").data("kendoComboBox");
+    if ( (tmp.value() > 0) && (js_id_aset > 0) ) {
+        $.post(
+            "<SM TYPE='area' NAME='url_ajxSaveIP'>",
+            { rNum: js_id_aset,
+              rNum2: tmp.value()
+              },
+            function (data) {
+                if (!(typeof data.error === "undefined")) { alert(data.error); }
+                
+                var tmp = $("#ref_ip").data("kendoComboBox");
+                tmp.value('');
+                tmp.dataSource.read();
+                tmp.refresh();
+                onComplete_astIP();
+            },
+            "html"
+        );
+    }
+    else {
+        alert('Error! IP harus dipilih');
+    }
+}
+
+function remove_ip(id) {
+    if (window.confirm('Hapus IP Address?')) {
+        $.get(
+            "<SM TYPE='area' NAME='url_removeAssetIP'>",
+            { rNum: id,
+              rNum2: js_id_aset
+              },
+            function (data) {
+                onComplete_astIP();
+            },
+            "html"
+        );
+    }
+}
+
+$(document).ready(function($){
+    
+    $("#win_viewPhoto").kendoWindow({
+        title: "Lihat Foto",
+        actions: [
+            "Close"
+        ],
+        modal: true,
+        pinned: true,
+        resizable: false,
+        scrollable: true,
+        visible: false
+    });
+    
+    $("#ref_ip").kendoComboBox({
+        placeholder: "Pilih IP Address",
+        dataTextField: "value",
+        dataValueField: "id",
+        filter: "contains",
+        autoBind: false,
+        minLength: 1,
+        dataSource: {
+            serverFiltering: true,
+            transport: {
+                read: {
+                    url: "<SM TYPE='area' NAME='url_ajxGetIP'>",
+                    dataType: "json"
+                }
+            }
+        }
+    });
+    
+});
+
+-->
+</script>

@@ -1,0 +1,51 @@
+body {
+    margin: 0px;
+}
+
+.mm_pubWebMain {
+	font-family: 'Oswald', serif;
+    font-size: 1.25em;
+    color: black;
+    background-color: #9CED74;
+    text-decoration: none;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:8px;
+    padding-bottom:8px;
+}
+
+.mm_pubWebMain:hover {
+	background-color: #D2AD00;
+	text-decoration: none;
+}
+
+.mm_pubWebSubMenu {
+	font-family: 'Nunito', serif;
+    font-size: 0.875em;
+    color: black;
+    background-color: #00964E;
+    text-decoration: none;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.mm_pubWebSubMenu:hover {
+	background-color: #D2AD00;
+	text-decoration: none;
+}
+
+/* Main Menu Sprite */
+/*
+.mm_kompas {
+    display: block;
+    background: url(../images/sprite.png) no-repeat;
+    height: 30px;
+    width: 250px;
+}
+
+.mm_kompas:hover {
+background-position: 0 -30px;
+}
+*/

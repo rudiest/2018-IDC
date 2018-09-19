@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-sm-6" style="text-align: left">
+  	<h2><b>Form Domain</b></h2>
+  </div>
+  <div class="col-sm-6" style="text-align: right">
+  	<input type="button" value="Batal, kembali ke tabel" onclick="batal()" class="btn btn-default"> &nbsp;&nbsp;
+  </div>
+</div>
+<div class="well well-lg">
+<div class="row">
+  <div class="col-sm-8">
+  	  <SM TYPE='area' NAME='sma_formcontent'>
+  </div>
+  <div class="col-sm-4">
+    <div style="<SM TYPE='area' NAME='sma_hide_div'>">
+      	<div class="well" style="background-color: #e0e0e0;">
+           <div style="margin-bottom:5px; ">Pilih IP yang akan dipetakan :</div>
+           <div style="margin-bottom:10px; "><input id="ref_ip" style="width: 100%;"/></div>
+           <div style="margin-bottom:10px; "><input type="button" class="k-button" value="Pilih IP" onclick="saveIP()"></div>  
+        </div>
+        <div style="margin-bottom:5px; "><label>IP Address yang sudah dipetakan ke domain ini antara lain: </label></div>
+        <div id="div_listOfIP" class="well"></div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+
+var js_id_domain = 0;
+<SM TYPE='area' NAME='sma_js_id_domain'>
+
+function batal() {
+    window.location.href = '<SM TYPE='area' NAME='url_batal'>';
+}
+
+function onComplete_astIP() {
+    $.get(
+        "<SM TYPE='area' NAME='url_getAssetIP'>",
+        { rNum: js_id_domain
+          },
+        function (data) {
+            $("#div_listOfIP").html(data);
+        },
+        "html"
+    );
+}
+
+function saveIP() {
+    var tmp = $("#ref_ip").data("kendoComboBox");
+    if ( (tmp.value() > 0) && (js_id_domain > 0) ) {
+        $.post(
+            "<SM TYPE='area' NAME='url_ajxSaveIP'>",
+            { rNum: js_id_domain,
+              rNum2: tmp.value()
+              },
+            function (data) {
+                if (!(typeof data.error === "undefined")) { alert(data.error); }
+                
+                var tmp = $("#ref_ip").data("kendoComboBox");
+                tmp.value('');
+                tmp.dataSource.read();
+                tmp.refresh();
+                onComplete_astIP();
+            },
+            "html"
+        );
+    }
+    else {
+        alert('Error! IP harus dipilih');
+    }
+}
+
+function remove_ip(id) {
+    if (window.confirm('Hapus IP Address?')) {
+        $.get(
+            "<SM TYPE='area' NAME='url_removeAssetIP'>",
+            { rNum: id,
+              rNum2: js_id_domain
+              },
+            function (data) {
+                onComplete_astIP();
+            },
+            "html"
+        );
+    }
+}
+
+$(document).ready(function($){
+
+    $("#ref_ip").kendoComboBox({
+        placeholder: "Pilih IP Address",
+        dataTextField: "value",
+        dataValueField: "id",
+        filter: "contains",
+        autoBind: false,
+        minLength: 1,
+        dataSource: {
+            serverFiltering: true,
+            transport: {
+                read: {
+                    url: "<SM TYPE='area' NAME='url_ajxGetIP'>",
+                    dataType: "json"
+                }
+            }
+        }
+    });
+    
+    onComplete_astIP();
+
+});
+
+-->
+</script>

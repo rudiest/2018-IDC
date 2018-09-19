@@ -1,0 +1,549 @@
+<div class="row">
+  <div class="col-sm-6">
+  	<div class="panel panel-default">
+      <div class="panel-heading">Daftar Aset</div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getAsetLabel">Nama Aset:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="getAsetLabel" placeholder="Penggalan Nama / BMN">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getAsetJenis">Jenis Aset:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getAsetJenis" placeholder="Pilih Jenis">
+              <SM TYPE='area' NAME='selopt_jenisAset'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getAsetSatker">Satuan Kerja:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getAsetSatker" placeholder="Pilih Satker">
+              <SM TYPE='area' NAME='selopt_satker'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getAsetPenanggung">Penanggung Jawab:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getAsetPenanggung" placeholder="Pilih Penanggung Jawab">
+              <SM TYPE='area' NAME='selopt_penanggungJawab'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getAsetLokasi">Lokasi Terakhir:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getAsetLokasi" placeholder="Pilih Lokasi">
+              <SM TYPE='area' NAME='selopt_lokasi'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getAsetIP">IP / Domain:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="getAsetIP" placeholder="Penggalan IP Address / Domain">
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-4 col-sm-8">
+              <button type="button" class="btn btn-default" onclick="formDaftarAset___print()">Print</button>
+              <button type="button" class="btn btn-default" onclick="formDaftarAset___excel()">Download</button>
+              <button type="button" class="btn btn-default" onclick="formDaftarAset___reset()">Reset</button>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        <!-- 
+        
+            function formDaftarAset___reset() {
+                $("#getAsetLabel").val('');
+                $("#getAsetIP").val('');
+                $("#getAsetJenis").data("kendoComboBox").value('');
+                $("#getAsetPenanggung").data("kendoComboBox").value('');
+                $("#getAsetSatker").data("kendoComboBox").value('');
+                $("#getAsetLokasi").data("kendoComboBox").value('');
+            }
+            
+            function formDaftarAset___getvar() {
+                var wsql = '&fR=1' + 
+                           '&fLabel=' + $("#getAsetLabel").val() +
+                           '&fIP=' + $("#getAsetIP").val() +
+                           '&fJenis=' + $("#getAsetJenis").data("kendoComboBox").value() +
+                           '&fPng=' + $("#getAsetPenanggung").data("kendoComboBox").value() +
+                           '&fSatker=' + $("#getAsetSatker").data("kendoComboBox").value() +
+                           '&fLokasi=' + $("#getAsetLokasi").data("kendoComboBox").value();
+                           
+                return wsql;
+            }
+            
+            function formDaftarAset___print() {
+                var wsql = formDaftarAset___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formDaftarAsetPrint'>'+wsql);
+            }
+            
+            function formDaftarAset___excel() {
+                var wsql = formDaftarAset___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formDaftarAsetExcel'>'+wsql);
+            }
+        
+            $(document).ready(function(){
+                $("#getAsetJenis").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+                $("#getAsetPenanggung").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+                $("#getAsetLokasi").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+                $("#getAsetSatker").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+            });
+        --> 
+        </script>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+  	<div class="panel panel-default">
+      <div class="panel-heading">Profil Aset</div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="getProfilAset">Aset:</label>
+            <div class="col-sm-10">
+              <select style="width:100%" id="getProfilAset" placeholder="Pilih Aset">
+              <SM TYPE='area' NAME='selopt_aset'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label><input type="checkbox" id="getProfilSpesifikasi"> Spesifikasi</label>
+                <label><input type="checkbox" id="getProfilPeristiwa"> Peristiwa</label>
+                <label><input type="checkbox" id="getProfilPerubahan"> Perubahan</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="button" class="btn btn-default" onclick="formProfilAset___print()">Print</button>
+              <button type="button" class="btn btn-default" onclick="formProfilAset___excel()">Download</button>
+              <button type="button" class="btn btn-default" onclick="formProfilAset___reset()">Reset</button>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        <!-- 
+            function formProfilAset___reset() {
+                $("#getProfilAset").data("kendoComboBox").value('');
+                $('#getProfilSpesifikasi').prop('checked',false);
+                $('#getProfilPeristiwa').prop('checked',false);
+                $('#getProfilPerubahan').prop('checked',false);
+            }
+            
+            function formProfilAset___getvar() {
+                var wsql = '&fR=1' + 
+                           '&rNum=' + $("#getProfilAset").data("kendoComboBox").value();
+                           
+                if ($('#getProfilSpesifikasi').prop('checked')) {
+                    wsql = wsql + '&useSpec=1';
+                }
+                if ($('#getProfilPeristiwa').prop('checked')) {
+                    wsql = wsql + '&useEvent=1';
+                }
+                if ($('#getProfilPerubahan').prop('checked')) {
+                    wsql = wsql + '&useChanges=1';
+                }
+                           
+                return wsql;
+            }
+            
+            function formProfilAset___print() {
+                var wsql = formProfilAset___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formProfilAsetPrint'>'+wsql);
+            }
+        
+            function formProfilAset___excel() {
+                var wsql = formProfilAset___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formProfilAsetExcel'>'+wsql);
+            }
+        
+            $(document).ready(function(){
+                $("#getProfilAset").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+            });
+        --> 
+        </script>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Spesifikasi Aset Per Jenis</div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="getSpekJenisAset">Jenis:</label>
+            <div class="col-sm-10">
+              <select style="width:100%" id="getSpekJenisAset" placeholder="Pilih Aset">
+              <SM TYPE='area' NAME='selopt_jenisAset'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="getSpekNamaAset">Nama:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="getSpekNamaAset" placeholder="Penggalan Nama / BMN">
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="button" class="btn btn-default" onclick="formSpekAset___excel()">Download</button>
+              <button type="button" class="btn btn-default" onclick="formSpekAset___reset()">Reset</button>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        <!-- 
+            function formSpekAset___reset() {
+                $("#getSpekJenisAset").data("kendoComboBox").value('');
+                $('#getSpekNamaAset').val('');
+            }
+            
+            function formSpekAset___getvar() {
+                var wsql = '&fR=1' + 
+                           '&fJenis=' + $("#getSpekJenisAset").data("kendoComboBox").value() +
+                           '&fLabel=' + $("#getSpekNamaAset").val();
+                           
+                return wsql;
+            }
+            
+            function formSpekAset___excel() {
+                var wsql = formSpekAset___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formSpekAsetExcel'>'+wsql);
+            }
+            
+            $(document).ready(function(){
+                $("#getSpekJenisAset").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+            });
+        --> 
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  	<div class="panel panel-default">
+      <div class="panel-heading">Domain</div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getDomainZona">Zona:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getDomainZona" placeholder="Pilih Zona">
+                <SM TYPE='area' NAME='selopt_zona'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getDomainNama">Nama Domain:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="getDomainNama" placeholder="Penggalan Nama">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getDomainUntuk">Peruntukan:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="getDomainUntuk" placeholder="Penggalan Peruntukan">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getDomainIP">IP Address:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="getDomainIP" placeholder="Penggalan IP">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getDomainSatker">Satuan Kerja:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getDomainSatker" placeholder="Pilih Satker">
+              <SM TYPE='area' NAME='selopt_satker'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getDomainPenanggung">Penanggung Jawab:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getDomainPenanggung" placeholder="Pilih Penanggung Jawab">
+                <SM TYPE='area' NAME='selopt_penanggungJawab'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-4 col-sm-8">
+              <button type="button" class="btn btn-default" onclick="formProfilDomain___print()">Print</button>
+              <button type="button" class="btn btn-default" onclick="formProfilDomain___excel()">Download</button>
+              <button type="button" class="btn btn-default" onclick="formProfilDomain___reset()">Reset</button>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        <!-- 
+        
+            function formProfilDomain___reset() {
+                $("#getDomainNama").val('');
+                $("#getDomainUntuk").val('');
+                $("#getDomainIP").val('');
+                $("#getDomainPenanggung").data("kendoComboBox").value('');
+                $("#getDomainZona").data("kendoComboBox").value('');
+                $("#getDomainSatker").data("kendoComboBox").value('');
+            }
+            
+            function formProfilDomain___getvar() {
+                var wsql = '&fR=1' + 
+                           '&fNama=' + $("#getDomainNama").val() +
+                           '&fUntuk=' + $("#getDomainUntuk").val() +
+                           '&fIP=' + $("#getDomainIP").val() +
+                           '&fZona=' + $("#getDomainZona").data("kendoComboBox").value() +
+                           '&fSatker=' + $("#getDomainSatker").data("kendoComboBox").value() +
+                           '&fPng=' + $("#getDomainPenanggung").data("kendoComboBox").value();
+                return wsql;
+            }
+            
+            function formProfilDomain___print() {
+                var wsql = formProfilDomain___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formProfilDomainPrint'>'+wsql);
+            }
+        
+            function formProfilDomain___excel() {
+                var wsql = formProfilDomain___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formProfilDomainExcel'>'+wsql);
+            }
+        
+            $(document).ready(function(){
+                $("#getDomainPenanggung").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+                $("#getDomainZona").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+                $("#getDomainSatker").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+            });
+        --> 
+        </script>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+  	<div class="panel-heading">IP Address</div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="getIPJenis">Jenis IP:</label>
+            <div class="col-sm-10">
+              <select style="width:100%" id="getIPJenis" placeholder="Jenis IP">
+                <option value="">---</option>
+                <option value="1">Private</option>
+                <option value="2">Public</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="getIPMulai">Mulai:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="getIPMulai" placeholder="IPv4 Address">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="getIPSelesai">Sampai:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="getIPSelesai" placeholder="IPv4 Address">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="getIPPeta">Pemetaan:</label>
+            <div class="col-sm-10">
+              <select style="width:100%" id="getIPPeta" placeholder="Pemetaan">
+                <option value="">---</option>
+                <option value="1">Dipetakan Ke Aset & Domain</option>
+                <option value="2">Dipetakan Ke Aset Saja</option>
+                <option value="3">Dipetakan Ke Domain Saja</option>
+                <option value="4">Belum Dipetakan</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="button" class="btn btn-default" onclick="formProfilIP___print()">Print</button>
+              <button type="button" class="btn btn-default" onclick="formProfilIP___excel()">Download</button>
+              <button type="button" class="btn btn-default" onclick="formProfilIP___reset()">Reset</button>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        <!-- 
+            function formProfilIP___reset() {
+                $("#getIPMulai").val('');
+                $("#getIPSelesai").val('');
+                $("#getIPJenis").data("kendoComboBox").value('');
+                $("#getIPPeta").data("kendoComboBox").value('');
+            }
+            
+            function formProfilIP___getvar() {
+                var wsql = '&fR=1' + 
+                           '&fMulai=' + $("#getIPMulai").val() +
+                           '&fSelesai=' + $("#getIPSelesai").val() +
+                           '&fJenis=' + $("#getIPJenis").data("kendoComboBox").value() +
+                           '&fPeta=' + $("#getIPPeta").data("kendoComboBox").value();
+                return wsql;
+            }
+            
+            function formProfilIP___print() {
+                var wsql = formProfilIP___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formProfilIPPrint'>'+wsql);
+            }
+        
+            function formProfilIP___excel() {
+                var wsql = formProfilIP___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formProfilIPExcel'>'+wsql);
+            }
+        
+            $(document).ready(function(){
+                $("#getIPJenis").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+                $("#getIPPeta").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+            });
+        --> 
+        </script>
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+<div class="row">
+  <div class="col-sm-6">
+  	<div class="panel panel-default">
+      <div class="panel-heading">Buku Tamu</div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getGBAwal">Periode Awal:</label>
+            <div class="col-sm-8">
+              <input type="text" id="getGBAwal" placeholder="DD-MM-YYYY">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getGBAkhir">Periode Akhir:</label>
+            <div class="col-sm-8">
+              <input type="text" id="getGBAkhir" placeholder="DD-MM-YYYY">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getGBNama">Nama Pengunjung:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="getGBNama" placeholder="Penggalan Nama">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getGBIntansi">Nama Instansi:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="getGBIntansi" placeholder="Penggalan Kata">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="getGBPendamping">Pendamping:</label>
+            <div class="col-sm-8">
+              <select style="width:100%" id="getGBPendamping" placeholder="Pilih">
+                <SM TYPE='area' NAME='selopt_pendamping'>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-4 col-sm-8">
+              <button type="button" class="btn btn-default" onclick="formGB___print()">Print</button>
+              <button type="button" class="btn btn-default" onclick="formGB___excel()">Download</button>
+              <button type="button" class="btn btn-default" onclick="formGB___reset()">Reset</button>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        <!-- 
+        
+            function formGB___reset() {
+                $("#getGBNama").val('');
+                $("#getGBIntansi").val('');
+                $("#getGBPendamping").data("kendoComboBox").value('');
+                $("#getGBAkhir").data("kendoDatePicker").value('');
+                $("#getGBAwal").data("kendoDatePicker").value('');
+            }
+            
+            function formGB___getvar() {
+                var wsql = '&fR=1' + 
+                           '&fNama=' + $("#getGBNama").val() +
+                           '&fInstansi=' + $("#getGBIntansi").val() +
+                           '&fAwal=' + $("#getGBAwal").val() +
+                           '&fAkhir=' + $("#getGBAkhir").val() +
+                           '&fPdp=' + $("#getGBPendamping").data("kendoComboBox").value();
+                return wsql;
+            }
+            
+            function formGB___print() {
+                var wsql = formGB___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formGBPrint'>'+wsql);
+            }
+        
+            function formGB___excel() {
+                var wsql = formGB___getvar();
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formGBExcel'>'+wsql);
+            }
+        
+            $(document).ready(function(){
+                $("#getGBPendamping").kendoComboBox({placeholder: "Please select", delay: 50, filter:"contains", suggest:false });
+                $("#getGBAwal").kendoDatePicker({format:"dd-MM-yyyy", parseFormat:["yyyy-mm-dd", "d m yyyy", "d m y", "dd/mm/yyyy", "dd MM yyyy", "dd-MM-yyyy", "d MM yyyy", "dd MMM yyyy"] });
+                $("#getGBAkhir").kendoDatePicker({format:"dd-MM-yyyy", parseFormat:["yyyy-mm-dd", "d m yyyy", "d m y", "dd/mm/yyyy", "dd MM yyyy", "dd-MM-yyyy", "d MM yyyy", "dd MMM yyyy"] });
+            });
+        --> 
+        </script>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+  	<div class="panel-heading">Dashboard</div>
+      <div class="panel-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group"> 
+            <div class="col-sm-12">
+              <button type="button" class="btn btn-default" onclick="formDashboard___print()">Print</button>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        <!-- 
+            function formDashboard___print() {
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formDashboardPrint'>');
+            }
+        
+            function formDashboard___excel() {
+                showForm(900,400,'_report','<SM TYPE='area' NAME='url_formDashboardExcel'>');
+            }
+        
+            $(document).ready(function(){
+            });
+        --> 
+        </script>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<script type="text/javascript">
+<!--
+function editGrid(option) {
+    window.location.href = '<SM TYPE='area' NAME='popUrl_modifyData'>&sType=edit&rNum='+option;
+}
+
+function addNewData() {
+    window.location.href = '<SM TYPE='area' NAME='popUrl_modifyData'>';
+}
+
+$(document).ready(function($){
+
+});
+
+-->
+</script>

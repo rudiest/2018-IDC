@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Inventaris Data Center">
+    <meta name="author" content="kominfo.go.id">
+    <link rel="icon" href="./images/favicon.png">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+
+<title><SM TYPE='area' NAME='sma_appTitle'></title>
+
+<link href="./kendo/styles/kendo.common-bootstrap.min.css" rel="stylesheet"/>
+<link href="./kendo/styles/kendo.bootstrap.min.css" rel="stylesheet"/>
+<link href="./bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./bootstrapvalidator-master/dist/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="./component/morrisjs/morris.css" rel="stylesheet">
+<link rel="stylesheet" href="./jscss/style_default.css" type="text/css" />
+
+<script src="./kendo/js/jquery.min.js"></script>
+<script src="./kendo/js/kendo.web.min.js"></script>
+<script src="./bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="./bootstrapvalidator-master/dist/js/bootstrapValidator.min.js"></script>
+<script src="./bootstrapvalidator-master/dist/js/language/id_ID.js"></script>
+<script src="./component/jquery.slimscroll.min.js"></script>
+<script src="./component/raphael-min.js"></script>
+<script src="./component/morrisjs/morris.min.js"></script>
+<script src="./jscss/jslib_default.js"></script>
+
+<style>
+
+</style>
+
+<script type="text/javascript">
+<!--
+$(document).ready(function($){
+    
+    $("#menu-toggle1").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
+    $("#menu-toggle2").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
+    $("#menuTree").kendoPanelBar({
+        expandMode: "single"
+    });
+    
+    $("#sidebar-wrapper").css('background-color','#2175AC');
+    $("#menuTree").show();
+    
+});
+-->
+</script>
+
+
+</head>
+
+<body style="">
+<nav class="navbar navbar-default navbar-fixed-top" style="margin-bottom:0px; background-color: #2175AC;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed navbar-btn btn btn-default" id="menu-toggle1">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <a class="navbar-brand" style="margin:0px; padding:4px;" href="#">
+        <img alt="Kominf" src="./images/logo_kominfo.png" style="width:80%">
+      </a>
+      <a class="navbar-brand" href="#" style="color:white; font-weight:bold;">Inventaris Data Center</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-btn btn btn-default navbar-right" style="margin-right:20px;" onclick="window.location.href='<SM TYPE='area' NAME='sma_logout'>'">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <button type="button" class="navbar-btn btn btn-default navbar-right" id="menu-toggle2" style="margin-right:15px;">
+        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <p class="navbar-text navbar-right" style="margin-right:25px; color:white;" id="navbar_datetime"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></p>
+      <p class="navbar-text navbar-right" style="margin-right:25px; color:white;">Login sebagai <SM TYPE='area' NAME='sma_userFirstName'></p>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div id="wrapper" class="container-fluid" style="">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" style="background-color: #ffffff;">
+        <ul id="menuTree" style="display:none;">
+          <SM TYPE='area' NAME='sma_appSideMenu'>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+      <SM TYPE='area' NAME='sma_appPageContent'>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+    
+    
+    
+<script type="text/javascript">
+<!--
+
+function displayNavbarTime() {
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    var dd=today.getDate();
+    var mm=today.getMonth();
+    var yy=today.getFullYear();
+    $("#navbar_datetime").html('<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '+dd+'/'+(parseInt(mm)+1)+'/'+yy+'   '+h+':'+m+':'+s);
+    var t = setTimeout(function(){displayNavbarTime()},1000);
+}
+
+$(document).ready(function($){
+    
+    displayNavbarTime();
+    
+});
+-->
+</script>
+
+</body>
+</html>

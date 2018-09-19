@@ -1,0 +1,131 @@
+<div class="form-group"> 
+ <label class="control-label col-sm-2" for="ip_number">
+ <div class="sfNormal">Please choose</div></label>
+</div>
+
+<div class="form-group"> 
+ <label class="control-label col-sm-2" for="ip_number">
+ <div class="sfNormal">IPv4 Range</div></label>
+ <div class="col-sm-10">
+   <input style="width:65px;" type="text" class="k-textbox" name="ipv4_1" id="ipv4_1" size="10" maxlength="3" value="" /> . 
+   <input style="width:65px;" type="text" class="k-textbox" name="ipv4_2" id="ipv4_2" size="10" maxlength="3" value="" /> . 
+   <input style="width:65px;" type="text" class="k-textbox" name="ipv4_3" id="ipv4_3" size="10" maxlength="3" value="" /> . 
+   <input style="width:65px;" type="text" class="k-textbox" name="ipv4_4" id="ipv4_4" size="10" maxlength="3" value="" /> for 
+   <input style="width:100px;" type="text" class="k-textbox" name="ipv4_c" id="ipv4_c" size="10" maxlength="10" value="" /> node 
+ </div>
+</div>
+
+<div class="form-group"> 
+ <label class="control-label col-sm-2" for="ip_number">
+ <div class="sfNormal">Or</div></label>
+</div>
+
+<div class="form-group"> 
+ <label class="control-label col-sm-2" for="ip_number">
+ <div class="sfNormal">IPv6 Range</div></label>
+ <div class="col-sm-10">
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_1" id="ipv6_1" size="10" maxlength="4" value="" /> : 
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_2" id="ipv6_2" size="10" maxlength="4" value="" /> : 
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_3" id="ipv6_3" size="10" maxlength="4" value="" /> : 
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_4" id="ipv6_4" size="10" maxlength="4" value="" /> : 
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_5" id="ipv6_5" size="10" maxlength="4" value="" /> : 
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_6" id="ipv6_6" size="10" maxlength="4" value="" /> : 
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_7" id="ipv6_7" size="10" maxlength="4" value="" /> : 
+   <input style="width:50px;" type="text" class="k-textbox" name="ipv6_8" id="ipv6_8" size="10" maxlength="4" value="" /> for 
+   <input style="width:100px;" type="text" class="k-textbox" name="ipv6_c" id="ipv6_c" size="10" maxlength="10" value="" /> node 
+ </div>
+</div>
+
+<div class="form-group"> 
+ <label class="control-label col-sm-2" for="submit"></label>
+ <div class="col-sm-10"><input value="Save" border="0" type="submit" class="btn btn-default" name="submit" />
+ </div>
+</div>
+
+
+<script type="text/javascript">
+<!--
+
+function confirmSave() {
+    
+    if (check_ip4()) {
+        if (window.confirm('Create '+$("#ipv4_c").val()+' node IPv4 starting from '+get_ip4()+' ?')) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        if (check_ip6()) {
+            if (window.confirm('Create '+$("#ipv6_c").val()+' node IPv6 starting from '+get_ip6()+' ?')) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            alert('Masukkan data IPv4 atau IPv6');
+            return false;
+        }
+    }
+}
+
+function check_ip6() {
+    if (
+            (parseInt($("#ipv6_1").val().length) > 0) ||
+            (parseInt($("#ipv6_2").val().length) > 0) ||
+            (parseInt($("#ipv6_3").val().length) > 0) ||
+            (parseInt($("#ipv6_4").val().length) > 0) ||
+            (parseInt($("#ipv6_5").val().length) > 0) ||
+            (parseInt($("#ipv6_6").val().length) > 0) ||
+            (parseInt($("#ipv6_7").val().length) > 0) ||
+            (parseInt($("#ipv6_8").val().length) > 0)
+    ) {
+        return true; 
+    }
+    else {
+        return false;
+    }
+}
+
+function get_ip6() {
+    return $("#ipv6_1").val()+':'+
+           $("#ipv6_2").val()+':'+
+           $("#ipv6_3").val()+':'+
+           $("#ipv6_4").val()+':'+
+           $("#ipv6_5").val()+':'+
+           $("#ipv6_6").val()+':'+
+           $("#ipv6_7").val()+':'+
+           $("#ipv6_8").val();
+}
+
+function check_ip4() {
+    if (
+            (parseInt($("#ipv4_1").val().length) > 0) ||
+            (parseInt($("#ipv4_2").val().length) > 0) ||
+            (parseInt($("#ipv4_3").val().length) > 0) ||
+            (parseInt($("#ipv4_4").val().length) > 0)
+            
+    ) {
+        return true; 
+    }
+    else {
+        return false;
+    }
+}
+
+function get_ip4() {
+    return $("#ipv4_1").val()+'.'+
+           $("#ipv4_2").val()+'.'+
+           $("#ipv4_3").val()+'.'+
+           $("#ipv4_4").val();
+}
+
+$(document).ready(function($){
+
+});
+
+-->
+</script>

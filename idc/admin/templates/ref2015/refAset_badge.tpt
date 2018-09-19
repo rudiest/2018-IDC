@@ -1,0 +1,27 @@
+<div style=""><SM TYPE='area' NAME='sma_image_qr'></div>
+
+<div style="margin-top:20px; border-bottom: 1px solid #cccccc;"><small><I>Nama Aset</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_nama'></div>
+
+<div style="margin-top:10px; border-bottom: 1px solid #cccccc;"><small><I>Jenis Aset</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_jenis'></div>
+
+<div style="margin-top:10px; border-bottom: 1px solid #cccccc;"><small><I>No. BMN</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_bmn'></div>
+
+<div style="margin-top:10px; border-bottom: 1px solid #cccccc;"><small><I>Lokasi</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_lokasi'></div>
+
+<div style="margin-top:10px; border-bottom: 1px solid #cccccc;"><small><I>IP Address</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_ip'></div>
+
+<div style="margin-top:30px;"><h4>Penanggung Jawab</h4></div>
+
+<div style="margin-top:10px; border-bottom: 1px solid #cccccc;"><small><I>Nama</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_png_nama'></div>
+
+<div style="margin-top:10px; border-bottom: 1px solid #cccccc;"><small><I>Telepon</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_png_telp'></div>
+
+<div style="margin-top:10px; border-bottom: 1px solid #cccccc;"><small><I>Email</I></small></div>
+<div style="margin-top:3px; text-align:left;"><SM TYPE='area' NAME='sma_png_email'></div>

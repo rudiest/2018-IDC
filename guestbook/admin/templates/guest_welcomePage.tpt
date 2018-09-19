@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Kominfo Inventaris Data Center Guest Page">
+    <meta name="author" content="kominfo.go.id">
+    <link rel="icon" href="./images/favicon.png">
+
+<title>INVENTARIS DATA CENTER KOMINFO</title>
+
+<link href="./kendo/styles/kendo.common-bootstrap.min.css" rel="stylesheet"/>
+<link href="./kendo/styles/kendo.bootstrap.min.css" rel="stylesheet"/>
+<link href="./bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./bootstrapvalidator-master/dist/css/bootstrapValidator.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./jscss/style_default.css" type="text/css" />
+
+<script src="./kendo/js/jquery.min.js"></script>
+<script src="./kendo/js/kendo.web.min.js"></script>
+<script src="./bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="./bootstrapvalidator-master/dist/js/bootstrapValidator.min.js"></script>
+<script src="./bootstrapvalidator-master/dist/js/language/id_ID.js"></script>
+
+<script src="./jscss/jslib_default.js"></script>
+
+<style>
+.camcontent{
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 410px;
+  height: 310px;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body style="background-image: url('./images/backgd/back_02.jpg'); background-repeat: no-repeat; background-attachment: fixed;">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h3 style="margin-top:10px; margin-bottom:10px; color:#C6C6C6;">
+            <img src="./images/logo_kominfo.png"> 
+            Data Center Kementerian Komunikasi dan Informatika
+          </h3>
+        </div>
+      </div>
+    </nav>
+
+    <div style="height:100px;"></div>
+    
+    <div class="container">
+
+        <div class="row">
+          <div class="col-sm-7">
+          
+              <div class="panel panel-default">
+                <div class="panel-heading lead">Buku Tamu</div>
+                <div class="panel-body">
+                    <SM TYPE='area' NAME='guestBookForm'>
+                </div>
+              </div>
+              
+          </div>
+          <div class="col-sm-5">
+              
+              <div class="panel panel-default">
+                <div class="panel-heading lead">Daftar Tamu Check In</div>
+                <div class="panel-body">
+                    <SM TYPE='area' NAME='guestBookList'>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+    </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Ambil Foto dan Verifikasi Data</h4>
+      </div>
+      <div class="modal-body">
+        <table width="100%" cellpadding="5" cellspacing="0">
+          <tr>
+            <td align="left" valign="top" width="450" height="325">
+            <div class="camcontent">
+                <video id="video" width="400" height="300" autoplay style="border:4px solid #cc0000; display:none;"></video>
+                <canvas id="canvas" width="400" height="300" style="border:4px solid #EC971F; display:none;">
+            </div>
+            <div class="cambuttons">
+                <button id="closeForm" type="button" class="btn btn-default" data-dismiss="modal">Perbaiki Data</button>
+                <button id="snap" class="btn btn-danger" style="" onclick="capture()">Ambil Foto</button> 
+                <button id="reset" class="btn btn-warning" style="" onclick="reset()">Ulangi</button>
+                <button id="submitform" class="btn btn-info" style="" onclick="submitform()">Simpan Ke Buku Tamu</button>
+            </div>  
+            </td>
+            <td align="left" valign="top">
+              <table width="100%" cellpadding="5" cellspacing="0">
+                <tr>
+                  <td align="left" valign="top" width="125">Nama</td>
+                  <td align="left" valign="top" ><p id="verif_gb_nama"></p></td>
+                </tr><tr>
+                  <td align="left" valign="top" width="125">Instansi</td>
+                  <td align="left" valign="top" ><p id="verif_gb_instansi"></p></td>
+                </tr><tr>
+                  <td align="left" valign="top" width="125">Tujuan</td>
+                  <td align="left" valign="top" ><p id="verif_gb_tujuan"></p></td>
+                </tr><tr>
+                  <td align="left" valign="top" width="125">Pendamping</td>
+                  <td align="left" valign="top" ><p id="verif_gb_pendamping"></p></td>
+                </tr><tr>
+                  <td align="left" valign="top" width="125">Telepon</td>
+                  <td align="left" valign="top" ><p id="verif_gb_telepon"></p></td>
+                </tr><tr>
+                  <td align="left" valign="top" width="125">Email</td>
+                  <td align="left" valign="top" ><p id="verif_gb_email"></p></td>
+                </tr>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModal2" style="display:none;">
+  <div id="myModal2_content" style="height:300px; overflow-y:scroll;">
+    <SM TYPE='area' NAME='guestBookTataTertib'>
+  </div>
+  <div>
+    <button id="btn_closeMyModal2" class="btn btn-info" style="" onclick="btn_closeMyModal2()">Tutup</button>
+  </div>
+</div>
+
+<div id="div_guest_checkout" style="display:none;">
+  <div id="div_guest_checkout_content"></div>
+  <div>
+    <button id="btn_closeGuestCheckout" class="btn btn-info" style="" onclick="btn_closeGuestCheckout()">Tutup</button>
+  </div>
+</div>
+
+<div id="div_guest_view" style="display:none;">
+  <div id="div_guest_view_content"></div>
+  <div>
+    <button id="btn_closeGuestView" class="btn btn-info" style="" onclick="btn_closeGuestView()">Tutup</button>
+  </div>
+</div>
+
+
+
+ 
+<script type="text/javascript">
+<!--
+
+    // Put event listeners into place
+    window.addEventListener("DOMContentLoaded", function() {
+        // Grab elements, create settings, etc.
+        var video = document.getElementById("video"),
+            videoObj = { "video": true },
+            errBack = function(error) {
+                console.log("Video capture error: ", error.code); 
+            };
+
+        // Put video listeners into place
+        if(navigator.getUserMedia) { // Standard
+            navigator.getUserMedia(videoObj, function(stream) {
+                video.src = stream;
+                video.play();
+                $("#snap").show();
+                $("#video").show();
+            }, errBack);
+        } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+            navigator.webkitGetUserMedia(videoObj, function(stream){
+                video.src = window.webkitURL.createObjectURL(stream);
+                video.play();
+                $("#snap").show();
+                $("#video").show();
+            }, errBack);
+        } else if(navigator.mozGetUserMedia) { // moz-prefixed
+            navigator.mozGetUserMedia(videoObj, function(stream){
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+                $("#snap").show();
+                $("#video").show();
+            }, errBack);
+        }
+    }, false);
+
+function capture() {
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    context.drawImage(video, 0, 0, 400, 300);
+    drawing = new Image();
+    drawing.src = "./images/watermark.png"; 
+    drawing.onload = function() {
+       var d = new Date();
+       context.drawImage(drawing,0,0);
+       context.font="bold 12px Arial";
+       context.fillStyle = 'white';
+       context.fillText("Nama: "+$("#gb_nama").val(),10,278);
+       context.fillText("Instansi: "+$("#gb_instansi").val(),10,294);
+       context.fillText("Buku Tamu Datacenter",267,278);
+       context.fillText(d.toDateString()+" "+d.toLocaleTimeString(),237,294);
+       $("#fotoData").val(canvas.toDataURL("image/jpeg", 0.85));
+    };
+    
+    $("#video").fadeOut();
+    $("#canvas").fadeIn();
+    $("#snap").hide();
+    $("#closeForm").hide();
+    $("#reset").show();
+    $("#submitform").show();
+}
+
+function reset() {
+    $("#video").fadeIn();
+    $("#canvas").fadeOut();
+    $("#snap").show();
+    $("#reset").hide();
+    $("#submitform").hide();
+    $("#closeForm").show();
+    $("#fotoData").val('');
+}
+
+function reset_form() {
+    
+    gridReload();
+    
+    $("#gb_nama").val('');
+    $("#gb_instansi").val('');
+    $("#gb_tujuan").val('');
+    $("#gb_pendamping").val('');
+    $("#gb_telepon").val('');
+    $("#gb_email").val('');
+    $("#gb_agree").prop('checked', false); 
+    $("#fotoData").val('');
+    
+    $("#verif_gb_nama").html('');
+    $("#verif_gb_instansi").html('');
+    $("#verif_gb_tujuan").html('');
+    $("#verif_gb_pendamping").html('');
+    $("#verif_gb_telepon").html('');
+    $("#verif_gb_email").html('');
+    
+    $("#myModal").modal("hide");
+    
+    $('#SM0_SF0').data('bootstrapValidator').resetForm();
+    
+    reset();
+}
+
+function submitform() {
+    
+    $.post(
+        "./index.php",
+        {
+            gb_nama: $("#gb_nama").val(),
+            gb_instansi: $("#gb_instansi").val(),
+            gb_tujuan: $("#gb_tujuan").val(),
+            gb_pendamping: $("#gb_pendamping").val(),
+            gb_telepon: $("#gb_telepon").val(),
+            gb_email: $("#gb_email").val(),
+            formID: $("#formID").val(),
+            fotoData: $("#fotoData").val()
+        },
+        function (data) {
+            if (parseInt(data) == 1024) {
+                alert($("#gb_nama").val()+', Selamat datang di Datacenter Kominfo');
+                reset_form();
+            }
+            else {
+                alert(data);
+            }
+        },
+        'html'
+    );
+    
+}
+
+function checkinStep2() {
+    
+    $('#SM0_SF0').data('bootstrapValidator').validate();
+    
+    if ($('#SM0_SF0').data('bootstrapValidator').isValid()) {
+        
+        $("#verif_gb_nama").html($("#gb_nama").val());
+        $("#verif_gb_instansi").html($("#gb_instansi").val());
+        $("#verif_gb_tujuan").html($("#gb_tujuan").val());
+        $("#verif_gb_pendamping").html($("#gb_pendamping").val());
+        $("#verif_gb_telepon").html($("#gb_telepon").val());
+        $("#verif_gb_email").html($("#gb_email").val());
+        
+        reset();
+         
+        $("#myModal").modal("show");
+    }
+}
+
+function showPanduan() {
+    var dialog = $("#myModal2").data("kendoWindow");
+    dialog.open();
+}
+
+function btn_closeMyModal2() {
+    var dialog = $("#myModal2").data("kendoWindow");
+    dialog.close();
+}
+
+function showGuestCheckout() {
+    var dialog = $("#div_guest_checkout").data("kendoWindow");
+    dialog.open();
+}
+
+function btn_closeGuestCheckout() {
+    var dialog = $("#div_guest_checkout").data("kendoWindow");
+    dialog.close();
+}
+
+function showGuestView() {
+    var dialog = $("#div_guest_view").data("kendoWindow");
+    dialog.open();
+}
+
+function btn_closeGuestView() {
+    var dialog = $("#div_guest_view").data("kendoWindow");
+    dialog.close();
+}
+
+function popCheckout(id) {
+    $.post(
+        "./index.php?opt=ajx_guestCheckOut",
+        {
+            rNum: id
+        },
+        function (data) {
+            $("#div_guest_checkout_content").html(data);
+            showGuestCheckout();
+        },
+        'html'
+    );
+}
+
+function popView(id) {
+    $.post(
+        "./index.php?opt=ajx_guestView",
+        {
+            rNum: id
+        },
+        function (data) {
+            $("#div_guest_view_content").html(data);
+            showGuestView();
+        },
+        'html'
+    );
+}
+
+function btn_goCheckout(id) {
+    $.post(
+        "./index.php?opt=ajx_goCheckout",
+        {
+            rNum: id
+        },
+        function (data) {
+            if (parseInt(data) == '1024') {
+                gridReload();
+                var dialog = $("#div_guest_checkout").data("kendoWindow");
+                dialog.close();
+            }
+            else {
+                alert(data);
+            }
+        },
+        'html'
+    );
+}
+
+$(document).ready(function($){
+    
+    $("#myModal").modal({
+        show: false
+    });
+    
+    $("#gb_instansi").kendoAutoComplete({
+        dataTextField: "instansi",
+        filter: "contains",
+        minLength: 2,
+        dataSource: {
+            serverFiltering: true,
+            transport: {
+                read: {
+                    url: "./index.php?opt=ajx_getInstansi",
+                    dataType: "json"
+                }
+            },
+            schema: {
+              data: "data",
+              total: "total"
+            }
+        }
+    });
+    
+    $("#myModal2").kendoWindow({
+        modal: true,
+        pinned: true,
+        resizable: false,
+        draggable: false,
+        title: "Panduan dan Tata Tertib Datacenter",
+        visible: false,
+        width: 900,
+        height: 400
+    });
+    
+    $("#div_guest_checkout").kendoWindow({
+        modal: true,
+        pinned: true,
+        resizable: false,
+        draggable: false,
+        title: "Checkout Tamu",
+        visible: false,
+        width: 900,
+        height: 400
+    });
+    
+    $("#div_guest_view").kendoWindow({
+        modal: true,
+        pinned: true,
+        resizable: false,
+        draggable: false,
+        title: "Lihat Data Tamu",
+        visible: false,
+        width: 900,
+        height: 400
+    });
+    
+    var dialog1 = $("#myModal2").data("kendoWindow"); dialog1.center();
+    var dialog2 = $("#div_guest_checkout").data("kendoWindow"); dialog2.center();
+    var dialog3 = $("#div_guest_view").data("kendoWindow"); dialog3.center();
+    
+    $('#SM0_SF0')
+        .bootstrapValidator({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            }
+        });
+    
+});
+-->
+</script>
+
+</body>
+</html>

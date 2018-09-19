@@ -1,0 +1,15 @@
+<li class="<SM TYPE='area' NAME='sma_groupMenu5'>"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Pengaturan Sistem
+    <ul>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refUser""><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pengguna</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refJenisAset"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Jenis Aset</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refLokasi"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokasi Aset</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refJenisLokasi"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Jenis Lokasi Aset</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refJenisPeristiwa"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Jenis Peristiwa</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refZonaDomain"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Lokasi Zona Domain</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refPngJawab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Penanggung Jawab</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refSatker""><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Satuan Kerja</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refForm""><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Formulir Aset</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refPrefix"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> Prefix URL QR</a></li>
+        <li><a href="<SM TYPE='area' NAME='sma_urlMenu'>&option=refAllAset"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Seluruh Data Aset</a></li>
+    </ul>
+</li>

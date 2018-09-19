@@ -1,0 +1,67 @@
+<form enctype="multipart/form-data" class="form-horizontal" id="SM0_SF0" name="SM0_SF0" role="form" >
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="gb_nama">Nama</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="gb_nama" name="gb_nama" placeholder="Masukkan nama lengkap anda" required>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="gb_instansi">Instansi</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="gb_instansi" name="gb_instansi" placeholder="Masukkan nama instansi / satuan kerja anda" required style="padding:0px;">
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="gb_tujuan">Tujuan</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="gb_tujuan" name="gb_tujuan" placeholder="Tujuan kunjungan anda" required>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="gb_pendamping">Pendamping</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="gb_pendamping" name="gb_pendamping" placeholder="Nama pendamping anda" required>
+       <option value="">- Pilih Pendamping -</option>
+       <SM TYPE='area' NAME='sma_areaPilihPendamping'>
+      </select>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="gb_telepon">Telepon</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="gb_telepon" name="gb_telepon" placeholder="Nomor telepon anda" required pattern="^[0-9\s\-()+\.]+$" data-error="Masukkan nomor telepon anda dengan hanya menggunakan angka dan simbol + - ( ) ">
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="gb_email">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="gb_email" name="gb_email" placeholder="Alamat email anda" required data-error="Format email tidak tepat">
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn" onclick="showPanduan()">Baca Peraturan & Ketentuan Kunjungan</button>
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label><input id="gb_agree" name="gb_agree" type="checkbox" value="1" required> Saya telah memahami peraturan & ketentuan kunjungan.</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-info btn-lg" onclick="checkinStep2()">Check In</button>
+    </div>
+  </div>
+  <input type="hidden" name="formID" id="formID" value="idcGuestBook">
+  <input type="hidden" name="fotoData" id="fotoData" value="">
+</form>
+<!-- dan menerima untuk patuh akan tata tertib dan peraturan yang berlaku di Data Center Kementerian Komunikasi dan Informatika. -->

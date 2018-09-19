@@ -1,0 +1,95 @@
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="info_lokasi_aset"></label>
+  <SM type="sf" data="entity" var="info_lokasi_aset">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxloc_tanggal"></label>
+  <SM type="sf" data="entity" var="trxloc_tanggal">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxloc_waktu"></label>
+  <SM type="sf" data="entity" var="trxloc_waktu">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxloc_id_lokasi_baru"></label>
+  <SM type="sf" data="entity" var="trxloc_id_lokasi_baru">
+</div>
+<div class="form-group">
+  <label for="email"><SM type="sf" data="title" var="trxloc_alasan"></label>
+  <SM type="sf" data="entity" var="trxloc_alasan">
+</div>
+<input type="button" class="btn btn-default" value="Simpan" onclick="lokasi_simpan()">&nbsp;&nbsp;<input type="button" class="btn btn-default" onclick="lokasi_bataltutup()" value="Batal & Tutup">
+
+<script type="text/javascript">
+<!--
+
+function lokasi_clearForm() {
+    var tmp1 = $("#trxloc_tanggal").data("kendoDatePicker");
+    tmp1.value(new Date());
+    
+    var tmp2 = $("#trxloc_waktu").data("kendoTimePicker");
+    tmp2.value(new Date());
+    
+    var tmp3 = $("#trxloc_id_lokasi_baru").data("kendoComboBox");
+    tmp3.value('');
+    
+    $("#trxloc_alasan").val('');
+}
+
+function lokasi_bataltutup() {
+    if (window.confirm('Batal dan tutup Form Pindah Lokasi?')) {
+        lokasi_clearForm();
+        var tmp = $("#divform_addloc").data("kendoWindow");
+        tmp.close();
+    }
+}
+
+function lokasi_simpan() {
+    
+    var tmp1 = $("#trxloc_tanggal").data("kendoDatePicker");
+    var tmp2 = $("#trxloc_waktu").data("kendoTimePicker");
+    var tmp3 = $("#trxloc_id_lokasi_baru").data("kendoComboBox");
+    
+    $.post(
+        "<SM TYPE='area' NAME='url_ajxLokasiSave'>",
+        { rNum: js_id_aset_view,
+          trxloc_tanggal: $("#trxloc_tanggal").val(),
+          trxloc_waktu: $("#trxloc_waktu").val(),
+          trxloc_id_lokasi_baru: tmp3.value(),
+          trxloc_alasan: $("#trxloc_alasan").val()
+          },
+        function (data) {
+            $("#divtab_lokasi_timeline").html(data);
+            gridReload_lokasi();
+            lokasi_clearForm();
+            var tmp = $("#divform_addloc").data("kendoWindow");
+            tmp.close();
+        },
+        "html"
+    );
+    
+}
+
+function lokasi_delete(id) {
+    if (window.confirm('Hapus data lokasi?')) {
+        $.post(
+            "<SM TYPE='area' NAME='url_ajxLokasiDelete'>",
+            { rNum: js_id_aset_view,
+              rNum2: id
+              },
+            function (data) {
+                $("#divtab_lokasi_timeline").html(data);
+                gridReload_lokasi();
+            },
+            "html"
+        );
+    }
+}
+
+
+$(document).ready(function($){
+    
+});
+
+-->
+</script>

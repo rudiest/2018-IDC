@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  Roadsend SiteManager
  *******************************************************************
@@ -7,8 +6,8 @@
  *******************************************************************
  *
  * This source file is subject to version 1.0 of the Roadsend Public
- * License, that is bundled with this package in the file 
- * LICENSE, and is available through the world wide web at 
+ * License, that is bundled with this package in the file
+ * LICENSE, and is available through the world wide web at
  * http://www.roadsend.com/license/rpl1.txt
  *
  *******************************************************************
@@ -27,8 +26,8 @@ class SM_errorHandler extends SM_object {
     /**
      * constructor
      */
-     
-     
+
+
     function SM_errorHandler() {
         // SM_object configure
         $this->_smoConfigure();
@@ -40,7 +39,7 @@ class SM_errorHandler extends SM_object {
     * invoke a fatal error page
     * the base method simply calls SM_fatalErrorPage
     */
-     
+
     function fatalErrorPage($msg, $obj=NULL) {
         SM_fatalErrorPage($msg, $obj);
     }
@@ -52,7 +51,7 @@ class SM_errorHandler extends SM_object {
      * @param SM_errorHandler $obj object calling the error handler
      * @param int $verbosity level of verbosity this message is assigned to (higher=more verbose)
      */
-    function debugLog($msg, $obj=NULL, $verbosity=0) { 
+    function debugLog($msg, $obj=NULL, $verbosity=0) {
         SM_debugLog($msg, $obj, $verbosity);
     }
 
@@ -72,7 +71,7 @@ class SM_errorHandler extends SM_object {
             $lastid = $GLOBALS['SM_LAST_DB_ID'];
             if (empty($lastid))
                 $lastid = 'default';
-            
+
             if ($SM_develState && isset($this->dbHL[$lastid])) {
                 $edata = $this->dbHL[$lastid]->errorInfo();
                 $msg .= $edata[2];

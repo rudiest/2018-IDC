@@ -27,7 +27,7 @@
 
 //$SM_rootDir = '/var/www/html/siteManager4/';   // when set, make sure it ends with a slash!
 
-$SM_rootDir = '/var/www/html/guestbook/siteManager4/';   // when set, make sure it ends with a slash!
+$SM_rootDir = '/var/www/html/2018-IDC/guestbook/siteManager4/';   // when set, make sure it ends with a slash!
 
 // -----------------------------------------------------------------------------
 // don't touch below here

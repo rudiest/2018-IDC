@@ -22,9 +22,9 @@
             <VAR name="dbType" value="mysql" />
             <VAR name="active"              value = "true" desc = "whether this connection is active or not" />
             <VAR name="defaultConnection"   value = "true"  desc = "if this is true, this connection will show up as the default connection ($this->dbH) in SiteManager objects" />
-            <VAR name="DSN"                 value = "mysql:host=localhost;dbname=idc_test" desc="database connection settings" />
+            <VAR name="DSN"                 value = "mysql:host=localhost;dbname=idc_db" desc="database connection settings" />
             <VAR name="userName"            value = "root" desc="db username" />
-            <VAR name="passWord"            value = "" desc="db user password" />
+            <VAR name="passWord"            value = "password" desc="db user password" />
             <VAR name="persistent"          value = "true"  desc = "if this is true, the PEAR DB libraries will use persistent connections" />
             <VAR name="required"            value = "true"  desc = "if this is true, a fatal error will be thrown if the connection fails. if false, it will ignore a bad connection." />
         </SECTION>
@@ -32,9 +32,9 @@
             <VAR name="dbType" value="mysql" />
             <VAR name="active"              value = "true" desc = "whether this connection is active or not" />
             <VAR name="defaultConnection"   value = "false"  desc = "if this is true, this connection will show up as the default connection ($this->dbH) in SiteManager objects" />
-            <VAR name="DSN"                 value = "mysql:host=localhost;dbname=idc_tes" desc="database connection settings" />
+            <VAR name="DSN"                 value = "mysql:host=localhost;dbname=idc_gb" desc="database connection settings" />
             <VAR name="userName"            value = "root" desc="db username" />
-            <VAR name="passWord"            value = "" desc="db user password" />
+            <VAR name="passWord"            value = "password" desc="db user password" />
             <VAR name="persistent"          value = "true"  desc = "if this is true, the PEAR DB libraries will use persistent connections" />
             <VAR name="required"            value = "true"  desc = "if this is true, a fatal error will be thrown if the connection fails. if false, it will ignore a bad connection." />
         </SECTION>
@@ -93,4 +93,3 @@
 
 </SMCONFIG>
 </SM_XML>
-

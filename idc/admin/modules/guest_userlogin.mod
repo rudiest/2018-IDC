@@ -24,7 +24,7 @@ class guest_userlogin extends SM_module {
 
         $tmp =& $userlogin->add('penanda','User ID','text',true,'',array('extraAttributes'=>' style="width:100%;" '));
 
-        $tmp =& $userlogin->add('kunci','Password','text',true,'',array('extraAttributes'=>' style="width:100%;" '));
+        $tmp =& $userlogin->add('kunci','Passwords','text',true,'',array('extraAttributes'=>' style="width:100%;" '));
         $tmp->addDirective('passWord',true);
 
         $userlogin->add('submit','','submit',false,'Login',array('extraAttributes'=>' value="Login" '));

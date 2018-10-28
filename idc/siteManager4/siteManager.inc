@@ -25,9 +25,9 @@
 
 // $SM_rootDir = '/var/www/user/siteManager/';
 
-//$SM_rootDir = '/var/www/html/siteManager4/';   // when set, make sure it ends with a slash!
+$SM_rootDir = '/var/www/html/2018-IDC/idc/siteManager4/';   // when set, make sure it ends with a slash!
 //$SM_rootDir = '/var/www/html/idc/siteManager4/';   // when set, make sure it ends with a slash!
-$SM_rootDir = 'C:\xampp\htdocs\App_IDC\idc\siteManager4\siteManager.inc/';   // when set, make sure it ends with a slash!
+//pass$SM_rootDir = 'C:\xampp\htdocs\App_IDC\idc\siteManager4\siteManager.inc';   // when set, make sure it ends with a slash!
 
 // -----------------------------------------------------------------------------
 // don't touch below here

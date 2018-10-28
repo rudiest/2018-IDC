@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 
     SITE CONFIG FILE
@@ -32,8 +34,9 @@
 */
 
 // site name and ID. used for debug output and configuration
-$SM_siteName    = "INVENTARIS DATA CENTER KEMKOMINFO";
+$SM_siteName    = "INVENTARIS DATA CENTER KEMKOMINFO TEST";
 $SM_siteID      = "INVDT";
+
 
 // Roadsend SiteManager Functionality
 require("../siteManager4/siteManager.inc");
@@ -45,7 +48,7 @@ if(substr(PHP_OS, 0, 3) == "WIN") {
 }
 else {
     // unix
-    $adminDir = "/var/www/html/guestbook/admin/";
+    $adminDir = "/var/www/html/2018-IDC/guestbook/admin/";
 }
 
 // load in site settings through SM_siteManager
@@ -56,6 +59,7 @@ $SM_siteManager->dbConnect();
 
 // use sessions
 $SM_siteManager->startSessions();
+
 
 // setup debug session?
 if ($SM_develState) {

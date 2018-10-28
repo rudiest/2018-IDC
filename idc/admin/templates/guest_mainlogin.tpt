@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <meta name="description" content="Inventaris Data Center">
     <meta name="author" content="kominfo.go.id">
     <link rel="icon" href="./images/favicon.png">
@@ -53,13 +53,13 @@
 <div id="wrapper" class="container" style="width:95%;">
 
   <div style="height:100px;"></div>
-  
+
   <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading" style="text-align: center;">
-              Silahkan Masukkan User-ID dan Password anda.
+              Silahkan Masukkan User-ID dan Password anda OKE.
           </div>
           <div class="panel-body">
               <SM TYPE='area' NAME='userLogin'>
@@ -68,19 +68,19 @@
     </div>
     <div class="col-sm-3"></div>
   </div>
-  
-  
-    
+
+
+
 </div>
-    
-    
-    
+
+
+
 <script type="text/javascript">
 <!--
 
 $(document).ready(function($){
-    
-    
+
+
 });
 -->
 </script>

@@ -513,6 +513,7 @@ class SM_session extends SM_object {
         }
 
         // include default search location
+    //    var_dump($this->directive['scriptWithVars']);
         (preg_match($this->directive['scriptWithVars'],$link)) ? $connect = '&' : $connect = '?';
 
         // generate variable exclude list

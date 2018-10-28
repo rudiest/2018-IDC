@@ -68,6 +68,7 @@ class SM_siteManagerRoot extends SM_object {
         // detect accepted browser locale
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             global $SM_clientLocale;
+            var_dump($_SERVER['HTTP_ACCEPT_LANGUAGE']);
             $SM_clientLocale = preg_split(', *',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
         }
 

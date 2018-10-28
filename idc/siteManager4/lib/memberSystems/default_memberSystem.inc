@@ -7,8 +7,8 @@
  *******************************************************************
  *
  * This source file is subject to version 1.0 of the Roadsend Public
- * License, that is bundled with this package in the file 
- * LICENSE, and is available through the world wide web at 
+ * License, that is bundled with this package in the file
+ * LICENSE, and is available through the world wide web at
  * http://www.roadsend.com/license/rpl1.txt
  *
  *******************************************************************
@@ -21,7 +21,7 @@
  *  a class to handle member logins
  *  works with session code
  *  uses database for storage
- *  
+ *
  * @author Shannon Weyrick <weyrick@roadsend.com>
  * @package roadsend_siteManager
  * @subpackage siteManager_member
@@ -29,7 +29,7 @@
 class SM_memberSystem_default extends SM_memberSystem {
 
     /**
-    * ID of the database connection we're using 
+    * ID of the database connection we're using
     * @var string
     */
     var $dbID = '';
@@ -70,7 +70,7 @@ class SM_memberSystem_default extends SM_memberSystem {
 
         if (!$this->sessionH->hasCookies)
             return false;
-        
+
         // define some configured variables we'll be using
         $memberTable            = $this->directive['memberTable'];
         $dbType                 = $this->directive['dbType'];
@@ -100,7 +100,8 @@ class SM_memberSystem_default extends SM_memberSystem {
                         {$memberTable}
                     WHERE
                         {$userNameField} = '{$userName}' AND
-                        {$passWordField} = password('{$passWord}')
+                        {$passWordField} = '{$passWord}'
+                        /*password ini apus klu mau bypass rudiest*/
                    ";
             break;
         default:
@@ -133,7 +134,7 @@ class SM_memberSystem_default extends SM_memberSystem {
             }
 
             return true;
-            
+
         }
         else {
             // invalid login
@@ -148,14 +149,14 @@ class SM_memberSystem_default extends SM_memberSystem {
      * attempt to remove a valid member session, based on current sessionID
      */
     function attemptLogout($sessionID=NULL) {
-        
+
         if (!empty($sessionID)) {
             $sID = $sessionID;
         }
         else {
             $sID = $this->sessionID;
         }
-        
+
         // define some configured variables we'll be using
         $memberSessionsTable    = $this->directive['memberSessionsTable'];
         $dbType                 = $this->directive['dbType'];
@@ -220,7 +221,7 @@ class SM_memberSystem_default extends SM_memberSystem {
         // QUERY: REMOVE ANY CURRENT SESSIONS FOR THIS MEMBER
         switch ($dbType) {
         case 'pgsql':
-            $SQL = "DELETE FROM 
+            $SQL = "DELETE FROM
                         \"{$memberSessionsTable}\"
                     WHERE
                         \"{$uIDField}\" = '$uID'
@@ -228,7 +229,7 @@ class SM_memberSystem_default extends SM_memberSystem {
             break;
         case 'oci8':
         case 'mysql':
-            $SQL = "DELETE FROM 
+            $SQL = "DELETE FROM
                         {$memberSessionsTable}
                     WHERE
                         {$uIDField} = '$uID'
@@ -246,7 +247,7 @@ class SM_memberSystem_default extends SM_memberSystem {
         // QUERY: ADD SESSION ENTRY
         switch ($dbType) {
         case 'pgsql':
-            $SQL = "INSERT INTO 
+            $SQL = "INSERT INTO
                         \"{$memberSessionsTable}\"
                         (
                             \"{$uIDField}\",
@@ -261,7 +262,7 @@ class SM_memberSystem_default extends SM_memberSystem {
                    ";
             break;
         case 'mysql':
-            $SQL = "INSERT INTO 
+            $SQL = "INSERT INTO
                         {$memberSessionsTable}
                     SET
                         {$uIDField} = '$uID',
@@ -270,7 +271,7 @@ class SM_memberSystem_default extends SM_memberSystem {
                    ";
             break;
         case 'oci8':
-            $SQL = "INSERT INTO 
+            $SQL = "INSERT INTO
                         {$memberSessionsTable}
                     ({$uIDField}, {$sIDField}, {$dcField})
                     VALUES ('$uID', '$this->sessionID','".time()."')";
@@ -289,7 +290,7 @@ class SM_memberSystem_default extends SM_memberSystem {
      * (maintainTables var in 'members' SECTION of GCS)
      * this really shouldn't be done by SiteManager, as it adds an extra db query
      * for every page view. it should be done externally by a cron script.
-     * but, for convenience ... 
+     * but, for convenience ...
      */
     function maintainTables() {
 
@@ -305,21 +306,21 @@ class SM_memberSystem_default extends SM_memberSystem {
         // QUERY: REMOVE MEMBERSESSIONS PAST THEIR TTL
         switch ($dbType) {
         case 'pgsql':
-            $SQL = "DELETE FROM 
+            $SQL = "DELETE FROM
                         \"{$memberSessionsTable}\"
                     WHERE
                         date_part('epoch',current_timestamp) - date_part('epoch',\"{$dcField}\") >= {$loginTTL}
                    ";
             break;
         case 'mysql':
-            $SQL = "DELETE FROM 
+            $SQL = "DELETE FROM
                         {$memberSessionsTable}
                     WHERE
                         UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP({$dcField}) >= {$loginTTL}
                    ";
             break;
         case 'oci8':
-            $SQL = "DELETE FROM 
+            $SQL = "DELETE FROM
                         {$memberSessionsTable}
                     WHERE
                         ".time()." - {$dcField} >= {$loginTTL}
@@ -345,7 +346,7 @@ class SM_memberSystem_default extends SM_memberSystem {
      *
      */
     function attemptLoadMember() {
-        
+
         if (!$this->sessionH->hasCookies)
             return false;
 
@@ -360,24 +361,24 @@ class SM_memberSystem_default extends SM_memberSystem {
                 if ($this->directive['loginTTL'] > 0) {
 
                     $now = time();
-					
-                    if ($now - $pmData['TTL'] > $this->directive['loginTTL']) {                    
+
+                    if ($now - $pmData['TTL'] > $this->directive['loginTTL']) {
                         // expire data. clear the persistent
                         global $SM_siteManager;
                         $SM_siteManager->sessionH->setPersistent(SM_MEMBER_PVAR);
                         $this->debugLog("warning: valid member login persistent session found, but it was expired, not logging in. ($now - ".$pmData['TTL']." < {$this->directive['loginTTL']})");
                         return;
                     }
-                    
+
                     $lastPageAccess = $this->inVarH->getSessionVar(SM_PAGETRACK_PVAR);
                     if(!empty($lastPageAccess) && ($this->directive['inactiveTTL'] > 0) && ($now -$lastPageAccess > $this->directive['inactiveTTL'])){
                         global $SM_siteManager;
                         $SM_siteManager->sessionH->setPersistent(SM_MEMBER_PVAR);
                         $this->debugLog("warning: valid member login persistent session found, but it was inactive too long, not logging in. ($now - $lastPageAccess < {$this->directive['inactiveTTL']})");
                         return;
-                    	
+
                     }
-                    
+
                 }
 
                 // good persistent member
@@ -403,27 +404,27 @@ class SM_memberSystem_default extends SM_memberSystem {
 
         switch ($dbType) {
         case 'pgsql':
-            $SQL = "SELECT 
+            $SQL = "SELECT
                         \"{$memberTable}\".*, date_part('epoch',\"{$memberSessionsTable}\".\"{$dcField}\") AS \"TTL\"
-                    FROM 
+                    FROM
                         \"{$memberTable}\",\"{$memberSessionsTable}\"
                     WHERE
                         \"{$sIDField}\"='$this->sessionID' AND
                         \"{$memberTable}\".\"{$uIDField}\" = \"{$memberSessionsTable}\".\"{$uIDField}\"";
             break;
         case 'mysql':
-            $SQL = "SELECT 
+            $SQL = "SELECT
                         {$memberTable}.*, UNIX_TIMESTAMP({$memberSessionsTable}.{$dcField}) AS TTL
-                    FROM 
+                    FROM
                         {$memberTable},{$memberSessionsTable}
                     WHERE
                         {$sIDField}='$this->sessionID' AND
                         {$memberTable}.{$uIDField} = {$memberSessionsTable}.{$uIDField}";
             break;
         case 'oci8':
-            $SQL = "SELECT 
+            $SQL = "SELECT
                         {$memberTable}.*, {$memberSessionsTable}.{$dcField} AS TTL
-                    FROM 
+                    FROM
                         {$memberTable},{$memberSessionsTable}
                     WHERE
                         {$sIDField}='$this->sessionID' AND
@@ -448,7 +449,7 @@ class SM_memberSystem_default extends SM_memberSystem {
             if ($this->directive['loginTTL'] > 0) {
 
                 $now = time();
-                if ($now - $rr['TTL'] > $this->directive['loginTTL']) {                    
+                if ($now - $rr['TTL'] > $this->directive['loginTTL']) {
                     // expired. leave the entry there, if they have maintainTables turned on
                     // it will be removed by that function
                     $this->debugLog("warning: valid member login session found, but it was expired, not logging in. ($now - {$rr['TTL']} < {$this->directive['loginTTL']})");
@@ -462,7 +463,7 @@ class SM_memberSystem_default extends SM_memberSystem {
                 $SM_siteManager->sessionH->setPersistent(SM_MEMBER_PVAR);
                 $this->debugLog("warning: valid member login persistent session found, but it was inactive too long, not logging in. ($now - $lastPageAccess < {$this->directive['inactiveTTL']})");
                 return;
-            	
+
             }
             // found a member session
             $this->memberData = $rr;
@@ -481,11 +482,11 @@ class SM_memberSystem_default extends SM_memberSystem {
      * remove all member session entries for specified sessionID
      * @var string $sessionID session ID to remove
      */
-    function clearMemberSession($sessionID) {        
-        return $this->attemptLogout($sessionID);        
+    function clearMemberSession($sessionID) {
+        return $this->attemptLogout($sessionID);
     }
-    
-    
+
+
 }
 
 ?>

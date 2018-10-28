@@ -3,7 +3,7 @@
 
     <SITE siteid="GLOBAL">
         <SECTION name="dirs">
-            <VAR name="smRoot"      value = "/var/www/html/guestbook/siteManager4/" />
+            <VAR name="smRoot"      value = "/var/www/html/2018-IDC/guestbook/siteManager4/" />
             <VAR name="base"        value = "{$smRoot}"/>
             <VAR name="redist"      value = "{$base}redist/" />
             <VAR name="pear"        value = "{$redist}pear/" />
@@ -110,4 +110,3 @@
 
 </SMCONFIG>
 </SM_XML>
-

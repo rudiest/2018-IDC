@@ -1,5 +1,7 @@
 <?php
 
+//rudiest_menu_control
+
     class adminWebPage2015 extends SM_codePlate {
 
         function codePlateConfig() {
@@ -27,11 +29,11 @@
 
             $url_logout = $this->sessionH->uLink('m2.php').'&option=logout';
             $this->addText($url_logout,'sma_logout');
-            
+
             $this->addText($member['firstName'],'sma_userFirstName');
-            
+
             $modMenu =& $this->loadModule('user_genMenu2015');
-            
+
             if (($member['idlevel'] != 1) &&
                 (( $option == 'refUser') ||
                  ( $option == 'refJenisAset') ||
@@ -43,7 +45,7 @@
                  ( $option == 'refPrefix') ||
                  ( $option == 'refAllAset')
                  )) {
-                     
+
 	             $option = 'userModuleAccessDenied';
             }
 
@@ -59,55 +61,55 @@
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Modul Cetak IDC 2015','sma_pageTitle');
                                                               $groupMenu = '';
-                                                              break;                                                                                            
-                                                              
+                                                              break;
+
                 case "logout"                               : $this->sessionH->attemptLogout();
                                                               $this->sessionH->transferToPage('../index.php');
                                                               break;
-                                                              
-                /* applications */                                              
+
+                /* applications */
                 case "refReport"                            : $loadedModule =& $this->loadModule('/ref2015/refReport');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Report IDC','sma_pageTitle');
                                                               $groupMenu = '1';
                                                               break;
-                                                              
+
                 case "appDashboard"                         : $loadedModule =& $this->loadModule('/appDashboard');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Inventaris Data Center','sma_pageTitle');
                                                               $groupMenu = '1';
                                                               break;
-                                                              
+
                 case "viewForm"                              : $loadedModule =& $this->loadModule('/ref2015/refForm');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Formulir Aset','sma_pageTitle');
                                                               $groupMenu = '1';
-                                                              break;                                               
-                                                              
+                                                              break;
+
                 case "r2_refAset"                           : $loadedModule =& $this->loadModule('/ref2015/refAset');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Data Aset IDC','sma_pageTitle');
                                                               $groupMenu = '1';
-                                                              break;                                              
-                                                              
+                                                              break;
+
                 case "refDomain"                             : $loadedModule =& $this->loadModule('/ref2015/refDomain');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Data Domain','sma_pageTitle');
                                                               $groupMenu = '1';
-                                                              break;                                               
-                                                              
+                                                              break;
+
                 case "refIP"                                 : $loadedModule =& $this->loadModule('/ref2015/refIP');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Data IP Address','sma_pageTitle');
                                                               $groupMenu = '1';
                                                               break;
-                
+
                 case "logLokasi"                            : $loadedModule =& $this->loadModule('/ref2015/tblLokasi');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Log Pemindahan Lokasi','sma_pageTitle');
                                                               $groupMenu = '2';
                                                               break;
-                
+
                 case "logPeristiwa"                            : $loadedModule =& $this->loadModule('/ref2015/tblKejadian');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Log Peristiwa Aset','sma_pageTitle');
@@ -119,7 +121,7 @@
                                                               $this->addText('Log Perubahan Sistem','sma_pageTitle');
                                                               $groupMenu = '2';
                                                               break;
-                                                            
+
                 case "logLogin"                            : $loadedModule =& $this->loadModule('/ref2015/tblLogSaya');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Log Aktifitas Saya','sma_pageTitle');
@@ -131,12 +133,12 @@
                                                               $this->addText('Log Pemakaian Sistem','sma_pageTitle');
                                                               $groupMenu = '2';
                                                               break;
-                                                              
+
                 case "logMyLogin"                           : $loadedModule =& $this->loadModule('/ref2015/tblLogSaya');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Log Aktifitas Saya','sma_pageTitle');
                                                               $groupMenu = '3';
-                                                              break;                                              
+                                                              break;
 
                 case "profilSaya"                            : $loadedModule =& $this->loadModule('/ref2015/userProfil');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
@@ -167,96 +169,96 @@
                                                               $this->addText('Daftar Pendamping Tamu','sma_pageTitle');
                                                               $groupMenu = '4';
                                                               break;
-                                                              
+
                 case "refUser"                              : $loadedModule =& $this->loadModule('/ref2015/refUser');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Akun Pengguna Sistem','sma_pageTitle');
                                                               $groupMenu = '5';
                                                               break;
-                                                              
+
                 case "refJenisAset"                         : $loadedModule =& $this->loadModule('/ref2015/refJenisAset');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Jenis Aset Sistem','sma_pageTitle');
                                                               $groupMenu = '5';
-                                                              break;                                              
-                                                              
+                                                              break;
+
                 case "refSpesifikasi"                       : $loadedModule =& $this->loadModule('/ref2015/refSpesifikasiAset');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Spesifikasi Jenis Aset Sistem','sma_pageTitle');
                                                               $groupMenu = '5';
-                                                              break;                                              
-                
+                                                              break;
+
                 case "refLokasi"                            : $loadedModule =& $this->loadModule('/ref2015/refLokasi');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Lokasi Aset Sistem','sma_pageTitle');
                                                               $groupMenu = '5';
-                                                              break; 
-                
+                                                              break;
+
                 case "refJenisLokasi"                       : $loadedModule =& $this->loadModule('/ref2015/refJenisLokasi');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Jenis Lokasi Aset Sistem','sma_pageTitle');
                                                               $groupMenu = '5';
-                                                              break;                                               
-                
+                                                              break;
+
                 case "refJenisPeristiwa"                    : $loadedModule =& $this->loadModule('/ref2015/refJenisKejadian');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Jenis Peristiwa','sma_pageTitle');
                                                               $groupMenu = '5';
                                                               break;
-                
+
                 case "refZonaDomain"                        : $loadedModule =& $this->loadModule('/ref2015/refZonaDomain');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Jenis Zona Domain','sma_pageTitle');
                                                               $groupMenu = '5';
                                                               break;
-                                                                                                            
+
                 case "refPngJawab"                          : $loadedModule =& $this->loadModule('/ref2015/refPngJawab');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Penanggung Jawab Aset','sma_pageTitle');
                                                               $groupMenu = '5';
                                                               break;
-                                                              
+
                 case "refPrefix"                            : $loadedModule =& $this->loadModule('/ref2015/refPrefix');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Global Akses','sma_pageTitle');
                                                               $groupMenu = '5';
                                                               break;
-                                                              
+
                 case "refAllAset"                           : $loadedModule =& $this->loadModule('/ref2015/refAset');
                                                               $loadedModule->addDirective('isadmin',true);
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Data Aset IDC','sma_pageTitle');
                                                               $groupMenu = '5';
                                                               break;
-                
+
                 case "refSatker"                           : $loadedModule =& $this->loadModule('/ref2015/refSatker');
                                                               $loadedModule->addDirective('isadmin',true);
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Satuan Kerja Penanggung Jawab','sma_pageTitle');
                                                               $groupMenu = '5';
                                                               break;
-                                                              
+
                 case "refForm"                           : $loadedModule =& $this->loadModule('/ref2015/refForm');
                                                               $loadedModule->addDirective('isadmin',true);
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Dokumen Formulir Aset','sma_pageTitle');
                                                               $groupMenu = '5';
-                                                              break; 
-                                                              
+                                                              break;
+
                 case "nmsList"                              : $loadedModule =& $this->loadModule('/ref2015/nmsList');
                                                               $this->addText($loadedModule->run(),'sma_appPageContent');
                                                               $this->addText('Status NMS','sma_pageTitle');
                                                               $groupMenu = '0';
-                                                              break;                                              
-                                                                                                                                                                  
-                default                                     : 
+                                                              break;
+
+                default                                     :
                                                               //For Home Page
                                                               //$tpt = $this->loadTemplate('screenDefault');
                                                               //$this->addText($tpt->run(),'bodyArea');
                                                               //$this->addText('Selamat Datang','areaPageTittle');
                                                               break;
             }
-            
+
             $modMenu->addDirective('menuGroup',$groupMenu);
             $this->addText($modMenu->run(),'sma_appSideMenu');
 
